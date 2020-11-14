@@ -40,7 +40,7 @@ class IvritaWP
   }
 
   public function print_switch() {
-    $position = $this->settings->get_field( 'switch_position' );
+    $position = $this->settings->get_field( 'switch_position', 'left' );
     include 'template-switch.php';
   }
 
@@ -56,7 +56,7 @@ class IvritaWP
       $id = get_the_ID();
     }
 
-    return $this->settings->get_field( 'enable_global' );
+    return $this->settings->get_field( 'enable_global', true );
   }
 }
 

@@ -124,7 +124,7 @@ class IvritaAdmin {
     echo '';
   }
 
-  public function get_field( $key ) {
-    return get_option('ivrita_' . $key);
+  public function get_field( $key, $default = false ) {
+    return get_option('ivrita_' . $key, $default);
   }
 }
