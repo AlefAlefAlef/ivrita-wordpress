@@ -53,15 +53,18 @@ class IvritaAdmin {
         'default' => true
       ),
       array(
-        'id' => 'enable_post_content',
-        'label' => __( 'Enable on Posts Content', 'ivrita' ),
+        'id' => 'switch_position',
+        'label' => __( 'Switch Position', 'ivrita' ),
         'section' => 'global_settings',
-        'type' => 'checkbox',
-        'options' => false,
+        'type' => 'radio',
+        'options' => [
+          'right' => __( 'Right', 'ivrita' ),
+          'left' => __( 'Left', 'ivrita' ),
+        ],
         'placeholder' => false,
-        'helper' => __( 'Enable on the content of all post types by default', 'ivrita' ),
-        'supplemental' => __( 'You can turn this off/on for each post individually.', 'ivrita' ),
-        'default' => true
+        'helper' => '',
+        'supplemental' => __( 'The location of the floating switch on the entire website', 'ivrita' ),
+        'default' => 'left'
       ),
     );
     foreach( $fields as $field ){
@@ -85,15 +88,24 @@ class IvritaAdmin {
       printf( '<textarea name="%1$s" id="%1$s" placeholder="%2$s" rows="5" cols="50">%3$s</textarea>', $arguments['uid'], $arguments['placeholder'], $value );
       break;
     case 'checkbox':
-      printf( '<input name="%1$s" id="%1$s" type="%2$s" %3$s />', $arguments['uid'], $arguments['type'], !!$value ? ' checked="checked" ' : '' );
+      printf( '<input name="%1$s" id="%1$s" type="%2$s" %3$s />', $arguments['uid'], $arguments['type'], checked( $value, 'on', false ) );
       break;
     case 'select':
       if( ! empty ( $arguments['options'] ) && is_array( $arguments['options'] ) ){
-          $options_markup = ’;
+          $options_markup = '';
           foreach( $arguments['options'] as $key => $label ){
               $options_markup .= sprintf( '<option value="%s" %s>%s</option>', $key, selected( $value, $key, false ), $label );
           }
           printf( '<select name="%1$s" id="%1$s">%2$s</select>', $arguments['uid'], $options_markup );
+      }
+      break;
+    case 'radio':
+      if( ! empty ( $arguments['options'] ) && is_array( $arguments['options'] ) ){
+          $options_markup = '';
+          foreach( $arguments['options'] as $key => $label ){
+              $options_markup .= sprintf( '<label><input type="radio" name="%s" value="%s" %s />%s</label>', $arguments['uid'], $key, checked( $value, $key, false ), $label );
+          }
+          echo $options_markup;
       }
       break;
     }

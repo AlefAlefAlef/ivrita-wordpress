@@ -1,4 +1,11 @@
-<div class="ivrita-switch">
+<?php
+
+?>
+<div class="ivrita-switch <?php
+if ( 'right' === $position ) {
+  echo 'ivrita-switch--right';
+}
+?>">
   <button class="ivrita-button" data-ivrita-mode="MALE" href="#" data-icon="♂" title="">ז</button>
   <button class="ivrita-button" data-ivrita-mode="FEMALE" href="#" data-icon="♀" title="לשון אישה">נ</button>
   <button class="ivrita-button ivrita-active" data-ivrita-mode="NEUTRAL" href="#" data-icon="⚥" title="א־בינארי">א</button>
@@ -6,17 +13,27 @@
 <style>
   .ivrita-switch {
     background-color: rgba(255, 255, 255, 0.9);
-    /* height: 14em; */
     width: 3em;
     position: fixed;
     top: calc(50% - 10em);
     left: -2em;
     border-radius: 0 1em 1em 0;
-    transition: .3s left ease-out;
+    transition: .3s all ease-out;
   }
 
   .ivrita-switch:hover {
     left: 0;
+  }
+
+
+  .ivrita-switch.ivrita-switch--right {
+    left: auto;
+    right: -2em;
+    border-radius: 1em 0 0 1em;
+  }
+
+  .ivrita-switch.ivrita-switch--right:hover {
+    right: 0;
   }
 
   .ivrita-switch .ivrita-button {

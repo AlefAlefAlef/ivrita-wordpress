@@ -40,6 +40,7 @@ class IvritaWP
   }
 
   public function print_switch() {
+    $position = $this->settings->get_field( 'switch_position' );
     include 'template-switch.php';
   }
 
