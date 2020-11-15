@@ -66,6 +66,54 @@ class IvritaAdmin {
         'supplemental' => __( 'The location of the floating switch on the entire website', 'ivrita' ),
         'default' => 'left'
       ),
+      array(
+        'id' => 'label_male',
+        'label' => __( 'Male Label', 'ivrita' ),
+        'section' => 'global_settings',
+        'type' => 'text',
+        'options' => false,
+        'placeholder' => __( 'Male', 'ivrita' ),
+        'helper' => '',
+        'supplemental' => __( 'The text that will be shown in the button title. Leave empty for default.', 'ivrita' ),
+        'default' => __( 'Male', 'ivrita' ),
+      ),
+      array(
+        'id' => 'label_female',
+        'label' => __( 'Female Label', 'ivrita' ),
+        'section' => 'global_settings',
+        'type' => 'text',
+        'options' => false,
+        'placeholder' => __( 'Female', 'ivrita' ),
+        'helper' => '',
+        'supplemental' => __( '', 'ivrita' ),
+        'default' => __( 'Female', 'ivrita' ),
+      ),
+      array(
+        'id' => 'label_neurtal',
+        'label' => __( 'Neurtal Label', 'ivrita' ),
+        'section' => 'global_settings',
+        'type' => 'text',
+        'options' => false,
+        'placeholder' => __( 'Neurtal', 'ivrita' ),
+        'helper' => '',
+        'supplemental' => __( '', 'ivrita' ),
+        'default' => __( 'Neurtal', 'ivrita' ),
+      ),
+      array(
+        'id' => 'menu_style',
+        'label' => __( 'Menu style', 'ivrita' ),
+        'section' => 'global_settings',
+        'type'    => 'select',
+        'options' => [
+            'style-1' => esc_html__( 'Ivrita Default', 'ivrita' ),
+            'style-2' => esc_html__( 'Venus & Mars', 'ivrita' ),
+            'style-3' => esc_html__( 'Hebrew M.F.X', 'ivrita' ),
+            'style-4' => esc_html__( 'M.F.X', 'ivrita' ),
+        ],
+        'helper' => '',
+        'supplemental' => __( '', 'ivrita' ),
+        'default'     => 'style-1',
+      )
     );
     foreach( $fields as $field ){
       $field['uid'] = 'ivrita_' . $field['id'];

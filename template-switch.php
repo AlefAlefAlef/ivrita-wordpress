@@ -1,50 +1,133 @@
 <?php
+switch ($menu_style) {
+  case 'style-3':
+    $icon = ['ז', 'נ', 'א'];
+    break;
 
+  case 'style-4':
+    $icon = ['M', 'F', 'X'];
+    break;
+  
+  default:
+    $icon = ['♂', '♀', '⚥'];
+    break;
+}
+$icon
 ?>
 <div class="ivrita-switch <?php
 if ( 'right' === $position ) {
   echo 'ivrita-switch--right';
 }
 ?>">
-  <button class="ivrita-button" data-ivrita-mode="MALE" href="#" data-icon="♂" title="">ז</button>
-  <button class="ivrita-button" data-ivrita-mode="FEMALE" href="#" data-icon="♀" title="לשון אישה">נ</button>
-  <button class="ivrita-button ivrita-active" data-ivrita-mode="NEUTRAL" href="#" data-icon="⚥" title="א־בינארי">א</button>
+  <a href="#" class="ivrita-button ivrita-button-<?php echo $menu_style; ?>" data-ivrita-mode="MALE" title="<?php echo esc_attr( $male_label ); ?>"><?php echo $icon[0]; ?></a>
+  <a href="#" class="ivrita-button ivrita-button-<?php echo $menu_style; ?>" data-ivrita-mode="FEMALE" title="<?php echo esc_attr( $female_label ); ?>"><?php echo $icon[1]; ?></a>
+  <a href="#" class="ivrita-button ivrita-button-<?php echo $menu_style; ?> ivrita-active" data-ivrita-mode="NEUTRAL" title="<?php echo esc_attr( $neutral_label ); ?>"><?php echo $icon[2]; ?></a>
+  <a href="https://alefalefalef.co.il/ivrita/" class="ivrita-info-link" title="<?php echo __( 'About the Ivrita project', 'ivrita' ); ?>">ℷ</a>
 </div>
 <style>
+
+  @font-face {
+    font-family: 'Ivritacons';
+    font-weight: '400';
+    src:  url('<?php echo plugin_dir_url( __FILE__ ); ?>fonts/ivritacons-alefalefalef.woff2') format('woff2'),
+          url('<?php echo plugin_dir_url( __FILE__ ); ?>fonts/ivritacons-alefalefalef.woff') format('woff');
+  }
+
+  .ivrita-switch *{margin:0;padding:0;outline:0;font-size:1em;font-weight:normal;font-style:normal;border:0;text-decoration:none;list-style-type:none}
+
   .ivrita-switch {
-    background-color: rgba(255, 255, 255, 0.9);
-    width: 3em;
+    background-color: rgba(255, 255, 255, 0.8);
     position: fixed;
-    top: calc(50% - 10em);
-    left: -2em;
-    border-radius: 0 1em 1em 0;
-    transition: .3s all ease-out;
+    top: calc(50% - 1em);
+    left: -1px;
+    border-radius: 0 7px 7px 0;
+    transition: .2s all ease-out;
+    border: 1px solid #222;
+    font-size: 2.7em;
+    min-width: 1.2em;
   }
-
+  
   .ivrita-switch:hover {
-    left: 0;
+    padding: 0.27em 0em 0em;
+    top: calc(50% - 2.2em);
   }
-
 
   .ivrita-switch.ivrita-switch--right {
     left: auto;
-    right: -2em;
+    right: -1em;
     border-radius: 1em 0 0 1em;
   }
 
   .ivrita-switch.ivrita-switch--right:hover {
-    right: 0;
   }
 
-  .ivrita-switch .ivrita-button {
+  .ivrita-switch a {
+    font-family: 'Ivritacons' !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    transition: .1s all ease-out;
+  }
+
+  .ivrita-switch a.ivrita-button {
     display: block;
-    width: 100%;
-    font-size: 2.5em;
-    padding: .2em 0.3em;
-    background: none;
-    border: 0;
+    color: #2d2828;
+    line-height: 1em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    width: 1.1em;
+    height: 1.1em;
+    line-height: 1.1em;
+    border-radius: 50%;
+    margin: 0 0.12em;
+    visibility: hidden;
+    font-size: 0;
   }
-  .ivrita-switch .ivrita-button:hover, .ivrita-switch .ivrita-button.ivrita-active {
-    background-color: rgba(0, 0, 0, 0.1);
+  .ivrita-switch:hover a.ivrita-button{
+    visibility: visible;
+    font-size: 1em;
+    
   }
+
+  .ivrita-switch a.ivrita-button.ivrita-button-style-1.ivrita-active { /* Ivrita default */
+    -webkit-font-feature-settings: "ss01";
+    font-feature-settings: "ss01";
+  }
+
+  .ivrita-switch a.ivrita-button.ivrita-button-style-2 { /* Venus & Mars*/
+    -webkit-font-feature-settings: "ss02";
+    font-feature-settings: "ss02";    
+  }
+  .ivrita-switch a.ivrita-button.ivrita-button-style-2.ivrita-active,
+  .ivrita-switch a.ivrita-button.ivrita-button-style-3.ivrita-active,
+  .ivrita-switch a.ivrita-button.ivrita-button-style-4.ivrita-active {
+    background: #222;
+    color: #fff;
+  }
+
+  .ivrita-switch a.ivrita-button.ivrita-button-style-3 { /* Hebrew M.F.X */
+  }
+  .ivrita-switch a.ivrita-button.ivrita-button-style-4 { /* M.F.X */
+  }
+  .ivrita-switch a.ivrita-button:hover {
+    color: #6306ec;
+  }
+  .ivrita-switch a.ivrita-info-link {
+    font-size: 1.4em;
+    display: block;
+    text-align: center;
+  }
+  .ivrita-switch a.ivrita-info-link:hover {
+    background-color: #6306ec;
+    color: #fff;
+    padding: 0 0.1em
+  }
+  
+  .ivrita-switch:hover a.ivrita-info-link {
+    padding: 0.05em 0;
+    font-size: 0.7em;
+    border-top: 1px solid #222;
+    margin-top: 0.4em;
+
+  } 
 </style>

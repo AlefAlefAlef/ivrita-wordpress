@@ -41,6 +41,10 @@ class IvritaWP
 
   public function print_switch() {
     $position = $this->settings->get_field( 'switch_position', 'left' );
+    $male_label = $this->settings->get_field( 'label_male', __( 'Male', 'ivrita' ) );
+    $female_label = $this->settings->get_field( 'label_female', __( 'Female', 'ivrita' ) );
+    $neutral_label = $this->settings->get_field( 'label_neutral', __( 'Neutral', 'ivrita' ) );
+    $menu_style = $this->settings->get_field( 'menu_style', __( 'Menu style', 'ivrita' ) );
     include 'template-switch.php';
   }
 
