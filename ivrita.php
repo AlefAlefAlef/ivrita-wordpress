@@ -23,8 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once 'admin-settings.php';
 
-class IvritaWP
-{
+class IvritaWP {
   function __construct() {
     $this->settings = new IvritaAdmin();
     add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 90 );

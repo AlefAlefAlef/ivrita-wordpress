@@ -17,6 +17,10 @@
       var btnMode = el.dataset.ivritaMode;
       if (btnMode && Ivrita.GENDERS.includes(Ivrita[btnMode])) {
         el.addEventListener('click', function(e) {
+          document.querySelectorAll('.ivrita-button').forEach(function(btn){
+            btn.classList.remove('ivrita-active');
+          });
+          el.classList.add('ivrita-active');
           e.preventDefault();
           window._ivrita.setMode(Ivrita[btnMode]);
           window.localStorage.setItem('ivrita-mode', btnMode);
