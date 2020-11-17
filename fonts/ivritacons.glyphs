@@ -5,7 +5,8 @@ DisplayStrings = (
 "/alef-hb/zayin-hb/nun-hb !?/space/sheqel/alephsymbol/gimelsymbol/northWestArrowToCorner/blackstar/ballotBox/ballotBoxWithCheck/ballotBoxWithX/peace/yinyang/whiteSmilingFace/venus/mars/heartWhiteSuit/heartBlackSuit/maleAndFemaleSign/heavyAsterisk/nullControl/venus.ss01/mars.ss01/maleAndFemaleSign.ss01/venus.ss02/mars.ss02/maleAndFemaleSign.ss02",
 X,
 "/alef-hb/zayin-hb/nun-hb/gimelsymbol",
-"/alef-hb/zayin-hb/nun-hb/space/tet-hb/space/tav-hb/space/finalmem-hb"
+"/alef-hb/zayin-hb/nun-hb/space/tet-hb/space/tav-hb/space/finalmem-hb",
+"/finalmem-hb"
 );
 copyright = "Copyright © 2020 by AlefAlefAlef. All rights reserved.";
 customParameters = (
@@ -733,7 +734,7 @@ unicode = 05D8;
 {
 color = 2;
 glyphname = "finalmem-hb";
-lastChange = "2020-11-15 16:32:43 +0000";
+lastChange = "2020-11-16 18:32:59 +0000";
 layers = (
 {
 layerId = "C43C9FC1-AECF-4743-B430-3C79B4516925";
@@ -750,25 +751,25 @@ nodes = (
 {
 closed = 1;
 nodes = (
-"73 0 LINE",
+"74 0 LINE",
 "572 0 LINE",
 "572 375 LINE SMOOTH",
 "572 533 OFFCURVE",
 "513 600 OFFCURVE",
 "354 600 CURVE SMOOTH",
-"73 600 LINE"
+"74 600 LINE"
 );
 },
 {
 closed = 1;
 nodes = (
-"213 475 LINE",
+"214 475 LINE",
 "324 475 LINE SMOOTH",
 "398 475 OFFCURVE",
 "432 451 OFFCURVE",
 "432 353 CURVE SMOOTH",
 "432 125 LINE",
-"213 125 LINE"
+"214 125 LINE"
 );
 },
 {
