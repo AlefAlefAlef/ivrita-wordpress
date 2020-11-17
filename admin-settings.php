@@ -85,7 +85,7 @@ class IvritaAdmin {
         'options' => false,
         'placeholder' => __( 'Female', 'ivrita' ),
         'helper' => '',
-        'supplemental' => __( '', 'ivrita' ),
+        'supplemental' => '',
         'default' => __( 'Female', 'ivrita' ),
       ),
       array(
@@ -96,7 +96,7 @@ class IvritaAdmin {
         'options' => false,
         'placeholder' => __( 'Neurtal', 'ivrita' ),
         'helper' => '',
-        'supplemental' => __( '', 'ivrita' ),
+        'supplemental' => '',
         'default' => __( 'Neurtal', 'ivrita' ),
       ),
       array(
@@ -111,10 +111,24 @@ class IvritaAdmin {
             'style-4' => esc_html__( 'M.F.X', 'ivrita' ),
         ],
         'helper' => '',
-        'supplemental' => __( '', 'ivrita' ),
+        'supplemental' => '',
         'default'     => 'style-1',
-      )
+      ),
+      array(
+        'id' => 'enable_roles',
+        'label' => __( 'Enable for roles', 'ivrita' ),
+        'section' => 'global_settings',
+        'type'    => 'checkbox',
+        'options' => array_merge(
+            wp_roles()->get_names(),
+            array( 'everyone' => __( 'Everyone', 'ivrita' ) )
+        ),
+        'helper' => '',
+        'supplemental' => '',
+        'default'     => array( 'everyone' => 'on' ),
+      ),
     );
+
     foreach( $fields as $field ){
       $field['uid'] = 'ivrita_' . $field['id'];
       add_settings_field( $field['uid'], $field['label'], array( $this, 'field_callback' ), 'ivrita', $field['section'], $field );
@@ -123,10 +137,7 @@ class IvritaAdmin {
   }
 
   public function field_callback( $arguments ) {
-    $value = get_option( $arguments['uid'] );
-    if ( $value === null ) {
-      $value = $arguments['default'];
-    }
+    $value = get_option( $arguments['uid'], $arguments['default'] );
 
     switch ( $arguments['type'] ){
     case 'text':
@@ -136,24 +147,32 @@ class IvritaAdmin {
       printf( '<textarea name="%1$s" id="%1$s" placeholder="%2$s" rows="5" cols="50">%3$s</textarea>', $arguments['uid'], $arguments['placeholder'], $value );
       break;
     case 'checkbox':
-      printf( '<input name="%1$s" id="%1$s" type="%2$s" %3$s />', $arguments['uid'], $arguments['type'], checked( $value, 'on', false ) );
+      if( ! empty ( $arguments['options'] ) && is_array( $arguments['options'] ) ){
+        $options_markup = '';
+        foreach( $arguments['options'] as $key => $label ){
+            $options_markup .= sprintf( '<label><input name="%1$s[%2$s]" id="%1$s_%2$s" type="checkbox" %3$s />%4$s</label><br>', $arguments['uid'], $key, checked( $value[$key], 'on', false ), $label );
+        }
+        echo $options_markup;
+      } else {
+        printf( '<input name="%1$s" id="%1$s" type="%2$s" %3$s />', $arguments['uid'], $arguments['type'], checked( $value, 'on', false ) );
+      }
       break;
     case 'select':
       if( ! empty ( $arguments['options'] ) && is_array( $arguments['options'] ) ){
-          $options_markup = '';
-          foreach( $arguments['options'] as $key => $label ){
-              $options_markup .= sprintf( '<option value="%s" %s>%s</option>', $key, selected( $value, $key, false ), $label );
-          }
-          printf( '<select name="%1$s" id="%1$s">%2$s</select>', $arguments['uid'], $options_markup );
+        $options_markup = '';
+        foreach( $arguments['options'] as $key => $label ){
+            $options_markup .= sprintf( '<option value="%s" %s>%s</option>', $key, selected( $value, $key, false ), $label );
+        }
+        printf( '<select name="%1$s" id="%1$s">%2$s</select>', $arguments['uid'], $options_markup );
       }
       break;
     case 'radio':
       if( ! empty ( $arguments['options'] ) && is_array( $arguments['options'] ) ){
-          $options_markup = '';
-          foreach( $arguments['options'] as $key => $label ){
-              $options_markup .= sprintf( '<label><input type="radio" name="%s" value="%s" %s />%s</label>', $arguments['uid'], $key, checked( $value, $key, false ), $label );
-          }
-          echo $options_markup;
+        $options_markup = '';
+        foreach( $arguments['options'] as $key => $label ){
+            $options_markup .= sprintf( '<label><input type="radio" name="%s" value="%s" %s />%s</label>', $arguments['uid'], $key, checked( $value, $key, false ), $label );
+        }
+        echo $options_markup;
       }
       break;
     }

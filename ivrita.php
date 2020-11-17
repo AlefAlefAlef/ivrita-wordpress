@@ -59,7 +59,28 @@ class IvritaWP {
       $id = get_the_ID();
     }
 
-    return $this->settings->get_field( 'enable_global', true );
+    // Globally enabled
+    if ( !$this->settings->get_field( 'enable_global', true ) ) {
+      return false;
+    }
+
+    // Roles
+    $enable_roles = $this->settings->get_field( 'enable_roles' );
+    if ( $enable_roles['everyone'] === 'on' ) {
+      return true;
+    } else {
+      $user = wp_get_current_user();
+      if ( empty( $user ) ) {
+        return false;
+      }
+
+      foreach ( (array) $user->roles as $role ) {
+        if ( $enable_roles[$role] === 'on' ) {
+          return true;
+        }
+      }
+    }
+    return ;
   }
 }
 
