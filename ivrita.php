@@ -24,17 +24,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once 'admin-settings.php';
 
 class IvritaWP {
+  
+  // This is used to uniquify each toolbar to make sure they won't collide
+  private $toolbar_count = 0;
+
+  private $info_link = 'https://alefalefalef.co.il/ivrita';
+  
   function __construct() {
     $this->settings = new IvritaAdmin();
     add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 90 );
     add_action( 'wp_footer', array( $this, 'print_switch' ), 90 );
+
+    // Shortcodes
+    add_shortcode( 'ivrita-toolbar', array( $this, 'toolbar_html' ) );
   }
 
   public function enqueue_scripts() {
-    wp_enqueue_script( 'ivrita-js', plugin_dir_url( __FILE__ ) . 'js/ivrita.min.js', '1.0', true );
-  
+    wp_enqueue_style( 'ivrita-css', plugin_dir_url( __FILE__ ) . 'css/main.css', array(), '1.0' );
+    wp_enqueue_script( 'ivrita-lib-js', plugin_dir_url( __FILE__ ) . 'js/ivrita.min.js', array(), '1.0', true );
+    
     if ( $this->enabled_for_page() ) {
-      wp_add_inline_script( 'ivrita-js', $this->inline_script() );
+      wp_enqueue_script( 'ivrita-wp-js', plugin_dir_url( __FILE__ ) . 'js/main.js', array( 'ivrita-lib-js' ), '1.0', true );
     }
   }
 
@@ -81,6 +91,20 @@ class IvritaWP {
       }
     }
     return ;
+  }
+
+  public function toolbar_html() {
+    $toolbar_id = $this->toolbar_count++;
+    $default_gender = 'NEUTRAL';
+    $info_link = $this->info_link;
+    ob_start();
+    include 'template-toolbar.php';
+    $toolbar_html = ob_get_clean();
+    return $toolbar_html;
+  }
+
+  public function print_toolbar() {
+    echo $this->toolbar_html();
   }
 }
 
