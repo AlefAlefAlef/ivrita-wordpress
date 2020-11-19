@@ -2,10 +2,114 @@
 
 
 class IvritaAdmin {
+  protected $fields;
+
   function __construct() {
+    $this->init_fields();
     add_action( 'admin_menu', array( $this, 'create_settings_page' ) );
     add_action( 'admin_init', array( $this, 'setup_sections' ) );
     add_action( 'admin_init', array( $this, 'setup_fields' ) );
+  }
+
+  protected function init_fields() {
+    $modes = array(
+      'type' => 'matrix',
+      'label' => __( 'Modes', 'ivrita' ),
+      'section' => 'global_settings',
+      'columns' => array(
+        'default_mode' => array(
+          'label' => __( 'Default', 'ivrita' ),
+          'type' => 'radio',
+          'default' => 'neutral'
+        ),
+        'labels' => array(
+          'label' => __( 'Label', 'ivrita' ),
+          'type' => 'text',
+        ),
+      ),
+      'rows' => array(
+        'male' => array(
+          'label' => __( 'Male', 'ivrita' ),
+          'default' => array(
+            'labels' => __( 'Male', 'ivrita' ),
+          ),
+        ),
+        'female' => array(
+          'label' => __( 'Female', 'ivrita' ),
+          'default' => array(
+            'labels' => __( 'Female', 'ivrita' ),
+          ),
+        ),
+        'neutral' => array(
+          'label' => __( 'Neutral', 'ivrita' ),
+          'default' => array(
+            'labels' => __( 'Neutral', 'ivrita' ),
+          ),
+        ),
+      ),
+    );
+    $modes['default'] = array(
+      'default_mode' => $modes['columns']['default_mode']['default'],
+    );
+    foreach ( $modes['rows'] as $row_id => $row ) {
+      $modes['default']['labels'] = $row['default']['label'];
+    }
+
+
+    $this->fields = array(
+      'enable_global' => array(
+        'label' => __( 'Global Enable', 'ivrita' ),
+        'section' => 'global_settings',
+        'type' => 'checkbox',
+        'options' => false,
+        'placeholder' => false,
+        'helper' => __( 'Enable everywhere in the website', 'ivrita' ),
+        'supplemental' => __( 'You can turn this off/on for each post individually.', 'ivrita' ),
+        'default' => true
+      ),
+      'switch_position' => array(
+        'label' => __( 'Switch Position', 'ivrita' ),
+        'section' => 'global_settings',
+        'type' => 'radio',
+        'options' => [
+          'right' => __( 'Right', 'ivrita' ),
+          'left' => __( 'Left', 'ivrita' ),
+        ],
+        'placeholder' => false,
+        'helper' => '',
+        'supplemental' => __( 'The location of the floating switch on the entire website', 'ivrita' ),
+        'default' => 'left'
+      ),
+      'modes' => $modes,
+      'menu_style' => array(
+        'label' => __( 'Menu style', 'ivrita' ),
+        'section' => 'global_settings',
+        'type'    => 'select',
+        'options' => [
+            'style-1' => esc_html__( 'Ivrita default', 'ivrita' ),
+            'style-2' => esc_html__( 'Venus & Mars', 'ivrita' ),
+            'style-3' => esc_html__( 'Hebrew M.F.X', 'ivrita' ),
+            'style-4' => esc_html__( 'M.F.X', 'ivrita' ),
+            'style-5' => esc_html__( 'Lips & mustache', 'ivrita' ),
+            'style-6' => esc_html__( 'Stick figures', 'ivrita' ),
+        ],
+        'helper' => '',
+        'supplemental' => '',
+        'default'     => 'style-1',
+      ),
+      'enable_roles' => array(
+        'label' => __( 'Enable for roles', 'ivrita' ),
+        'section' => 'global_settings',
+        'type'    => 'checkbox',
+        'options' => array_merge(
+          array( 'everyone' => __( 'Everyone', 'ivrita' ) ),
+          wp_roles()->get_names()
+        ),
+        'helper' => '',
+        'supplemental' => '',
+        'default'     => array( 'everyone' => 'on' ),
+      ),
+    );
   }
   
   public function create_settings_page() {
@@ -40,99 +144,8 @@ class IvritaAdmin {
   }
   
   public function setup_fields() {
-    $fields = array(
-      array(
-        'id' => 'enable_global',
-        'label' => __( 'Global Enable', 'ivrita' ),
-        'section' => 'global_settings',
-        'type' => 'checkbox',
-        'options' => false,
-        'placeholder' => false,
-        'helper' => __( 'Enable everywhere in the website', 'ivrita' ),
-        'supplemental' => __( 'You can turn this off/on for each post individually.', 'ivrita' ),
-        'default' => true
-      ),
-      array(
-        'id' => 'switch_position',
-        'label' => __( 'Switch Position', 'ivrita' ),
-        'section' => 'global_settings',
-        'type' => 'radio',
-        'options' => [
-          'right' => __( 'Right', 'ivrita' ),
-          'left' => __( 'Left', 'ivrita' ),
-        ],
-        'placeholder' => false,
-        'helper' => '',
-        'supplemental' => __( 'The location of the floating switch on the entire website', 'ivrita' ),
-        'default' => 'left'
-      ),
-      array(
-        'id' => 'label_male',
-        'label' => __( 'Male Label', 'ivrita' ),
-        'section' => 'global_settings',
-        'type' => 'text',
-        'options' => false,
-        'placeholder' => __( 'Male', 'ivrita' ),
-        'helper' => '',
-        'supplemental' => __( 'The text that will be shown in the button title. Leave empty for default.', 'ivrita' ),
-        'default' => __( 'Male', 'ivrita' ),
-      ),
-      array(
-        'id' => 'label_female',
-        'label' => __( 'Female Label', 'ivrita' ),
-        'section' => 'global_settings',
-        'type' => 'text',
-        'options' => false,
-        'placeholder' => __( 'Female', 'ivrita' ),
-        'helper' => '',
-        'supplemental' => '',
-        'default' => __( 'Female', 'ivrita' ),
-      ),
-      array(
-        'id' => 'label_neurtal',
-        'label' => __( 'Neurtal Label', 'ivrita' ),
-        'section' => 'global_settings',
-        'type' => 'text',
-        'options' => false,
-        'placeholder' => __( 'Neurtal', 'ivrita' ),
-        'helper' => '',
-        'supplemental' => '',
-        'default' => __( 'Neurtal', 'ivrita' ),
-      ),
-      array(
-        'id' => 'menu_style',
-        'label' => __( 'Menu style', 'ivrita' ),
-        'section' => 'global_settings',
-        'type'    => 'select',
-        'options' => [
-            'style-1' => esc_html__( 'Ivrita default', 'ivrita' ),
-            'style-2' => esc_html__( 'Venus & Mars', 'ivrita' ),
-            'style-3' => esc_html__( 'Hebrew M.F.X', 'ivrita' ),
-            'style-4' => esc_html__( 'M.F.X', 'ivrita' ),
-            'style-5' => esc_html__( 'Lips & mustache', 'ivrita' ),
-            'style-6' => esc_html__( 'Stick figures', 'ivrita' ),
-        ],
-        'helper' => '',
-        'supplemental' => '',
-        'default'     => 'style-1',
-      ),
-      array(
-        'id' => 'enable_roles',
-        'label' => __( 'Enable for roles', 'ivrita' ),
-        'section' => 'global_settings',
-        'type'    => 'checkbox',
-        'options' => array_merge(
-          array( 'everyone' => __( 'Everyone', 'ivrita' ) ),
-          wp_roles()->get_names()
-        ),
-        'helper' => '',
-        'supplemental' => '',
-        'default'     => array( 'everyone' => 'on' ),
-      ),
-    );
-
-    foreach( $fields as $field ){
-      $field['uid'] = 'ivrita_' . $field['id'];
+    foreach( $this->fields as $id => $field ){
+      $field['uid'] = 'ivrita_' . $id;
       add_settings_field( $field['uid'], $field['label'], array( $this, 'field_callback' ), 'ivrita', $field['section'], $field );
       register_setting( 'ivrita', $field['uid'] );
     }
@@ -177,6 +190,8 @@ class IvritaAdmin {
         echo $options_markup;
       }
       break;
+    case 'matrix':
+      $this->print_matrix($arguments, $value);
     }
     
     
@@ -206,7 +221,56 @@ class IvritaAdmin {
     <?php
   }
 
-  public function get_field( $key, $default = false ) {
+  protected function print_matrix( $field, $value = array() ) {
+    ?>
+    <table style="max-width: 25em">
+      <tr>
+        <th></th>
+        <?php
+        foreach ( (array) $field['columns'] as $column ) {
+          ?>
+          <th>
+            <?php echo esc_html( $column['label'] ); ?>
+          </th>
+          <?php
+        }
+        ?>
+      </tr>
+      <?php
+      foreach ( (array) $field['rows'] as $row_id => $row ) {
+        ?>
+        <tr>
+          <th>
+            <?php echo esc_html( $row['label'] ); ?>
+          </th>
+          <?php foreach ( (array) $field['columns'] as $column_id => $column ) { ?>
+            <td>
+              <?php
+              switch ( $column['type'] ){
+              case 'text':
+              case 'number':
+                $name = sprintf( '%s[%s][%s]', $field['uid'], $column_id, $row_id );
+                $input_value = $value[$column_id][$row_id];
+                printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $name, $arguments['type'], $row['default'][$column_id], $input_value );
+                break;
+              case 'radio':
+                $name = sprintf( '%s[%s]', $field['uid'], $column_id );
+                printf( '<input name="%1$s" id="%1$s" type="radio" value="%2$s" %3$s />', $name, $row_id, checked( $value[$column_id], $row_id, false ) );
+                break;
+              }
+              ?>
+            </td>
+          <?php } ?>
+        </tr>
+        <?php
+      }
+    ?> </table> <?php
+  }
+
+  public function get_field( $key ) {
+    if ( $default === null && isset( $this->fields[$key] ) && $this->fields[$key]['default'] ) {
+      $default = $this->fields[$key]['default'];
+    }
     return get_option('ivrita_' . $key, $default);
   }
 }

@@ -49,11 +49,12 @@ class IvritaWP {
   }
 
   public function print_switch() {
-    $position = $this->settings->get_field( 'switch_position', 'left' );
-    $male_label = $this->settings->get_field( 'label_male', __( 'Male', 'ivrita' ) );
-    $female_label = $this->settings->get_field( 'label_female', __( 'Female', 'ivrita' ) );
-    $neutral_label = $this->settings->get_field( 'label_neutral', __( 'Neutral', 'ivrita' ) );
-    $menu_style = $this->settings->get_field( 'menu_style', __( 'Menu style', 'ivrita' ) );
+    $position = $this->settings->get_field( 'switch_position' );
+    $modes = $this->settings->get_field( 'modes' );
+    $male_label = $modes['labels']['male'];
+    $female_label = $modes['labels']['female'];
+    $neutral_label = $modes['labels']['neutral'];
+    $menu_style = $this->settings->get_field( 'menu_style' );
     switch ($menu_style) {
       case 'style-3':
         $menu_style_icon = ['ז', 'נ', 'א'];
@@ -92,7 +93,7 @@ class IvritaWP {
     }
 
     // Globally enabled
-    if ( !$this->settings->get_field( 'enable_global', true ) ) {
+    if ( !$this->settings->get_field( 'enable_global' ) ) {
       return false;
     }
 
