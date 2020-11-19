@@ -122,8 +122,8 @@ class IvritaAdmin {
         'section' => 'global_settings',
         'type'    => 'checkbox',
         'options' => array_merge(
-            wp_roles()->get_names(),
-            array( 'everyone' => __( 'Everyone', 'ivrita' ) )
+          array( 'everyone' => __( 'Everyone', 'ivrita' ) ),
+          wp_roles()->get_names()
         ),
         'helper' => '',
         'supplemental' => '',
@@ -190,7 +190,20 @@ class IvritaAdmin {
   }
   
   public function global_settings_section() {
-    echo '';
+    ?>
+    <script>
+      jQuery(function($){
+        $('#ivrita_enable_roles_everyone').change(function(){
+          $other_checkboxes = $('input[name^="ivrita_enable_roles"]').not('#ivrita_enable_roles_everyone');
+          if ($(this).prop('checked')) {
+            $other_checkboxes.prop('disabled', true);
+          } else {
+            $other_checkboxes.prop('disabled', false);
+          }
+        }).change();
+      });
+    </script>
+    <?php
   }
 
   public function get_field( $key, $default = false ) {
