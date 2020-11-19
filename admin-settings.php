@@ -105,10 +105,12 @@ class IvritaAdmin {
         'section' => 'global_settings',
         'type'    => 'select',
         'options' => [
-            'style-1' => esc_html__( 'Ivrita Default', 'ivrita' ),
+            'style-1' => esc_html__( 'Ivrita default', 'ivrita' ),
             'style-2' => esc_html__( 'Venus & Mars', 'ivrita' ),
             'style-3' => esc_html__( 'Hebrew M.F.X', 'ivrita' ),
             'style-4' => esc_html__( 'M.F.X', 'ivrita' ),
+            'style-5' => esc_html__( 'Lips & mustache', 'ivrita' ),
+            'style-6' => esc_html__( 'Stick figures', 'ivrita' ),
         ],
         'helper' => '',
         'supplemental' => '',

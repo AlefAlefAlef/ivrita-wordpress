@@ -1,22 +1,20 @@
 <div class="ivrita-toolbar" id="ivrita-toolbar-<?php echo intval($toolbar_id); ?>">
-  <strong>לשון הפניה:</strong>
-  <ul>
+  <div class="ivrita-toolbar-menu">
+    <div class="ivrita-toolbar-label"><?php _e( 'Reference tongue:', 'ivrita' ); ?></div>
     <?php
     $options = array(
-      'MALE' => 'זכר',
-      'FEMALE' => 'נקבה',
-      'NEUTRAL' => 'ניטרלי',
+      'MALE' => 'זכר', //$male_label,
+      'FEMALE' => 'אישה', //$female_label,
+      'NEUTRAL' => 'ניטראלי', //$neutral_label,
     );
     foreach ( $options as $key => $label ) {
       ?>
-      <li>
-        <a href="#" class="ivrita-mode-changer" data-ivrita-mode="<?php echo esc_attr( $key ); ?>">
-          <?php echo esc_html( $label ); ?>
-        </a>
-      </li>
+      <a href="#" class="ivrita-mode-changer" data-ivrita-mode="<?php echo esc_attr( $key ); ?>" data-ivrita-icon="<?php echo $menu_style_icon[$key]; ?>">
+        <?php echo esc_html( $label ); ?>
+      </a>
       <?php
     }
     ?>
-  </ul>
-  <a class="credit" href="<?php echo esc_attr( $info_link ); ?>" target="_blank">מידע <i class="icon" data-icon="."></i></a>
+  </div>
+  <a class="ivrita-toolbar-info" href="<?php echo esc_attr( $info_link ); ?>" target="_blank" title="<?php echo esc_attr( 'About the Ivrita project', 'ivrita' ); ?>"><?php _e( 'Info', 'ivrita' ); ?> <i class="icon" data-icon="."></i></a>
 </div>

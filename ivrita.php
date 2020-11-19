@@ -54,7 +54,29 @@ class IvritaWP {
     $female_label = $this->settings->get_field( 'label_female', __( 'Female', 'ivrita' ) );
     $neutral_label = $this->settings->get_field( 'label_neutral', __( 'Neutral', 'ivrita' ) );
     $menu_style = $this->settings->get_field( 'menu_style', __( 'Menu style', 'ivrita' ) );
+    switch ($menu_style) {
+      case 'style-3':
+        $menu_style_icon = ['ז', 'נ', 'א'];
+        break;
+
+      case 'style-4':
+        $menu_style_icon = ['M', 'F', 'X'];
+        break;
+
+      case 'style-5':
+        $menu_style_icon = ['A', 'B', 'C'];
+        break;
+
+      case 'style-6':
+        $menu_style_icon = ['a', 'b', 'c'];
+        break;
+      
+      default:
+        $menu_style_icon = ['♂', '♀', '⚥'];
+        break;
+    }
     include 'template-switch.php';
+    include 'template-toolbar.php';
   }
 
   public function inline_script() {
