@@ -55,27 +55,6 @@ class IvritaWP {
     $female_label = $modes['labels']['female'];
     $neutral_label = $modes['labels']['neutral'];
     $menu_style = $this->settings->get_field( 'menu_style' );
-    switch ($menu_style) {
-      case 'style-3':
-        $menu_style_icon = ['ז', 'נ', 'א'];
-        break;
-
-      case 'style-4':
-        $menu_style_icon = ['M', 'F', 'X'];
-        break;
-
-      case 'style-5':
-        $menu_style_icon = ['A', 'B', 'C'];
-        break;
-
-      case 'style-6':
-        $menu_style_icon = ['a', 'b', 'c'];
-        break;
-      
-      default:
-        $menu_style_icon = ['♂', '♀', '⚥'];
-        break;
-    }
     include 'template-switch.php';
     include 'template-toolbar.php';
   }

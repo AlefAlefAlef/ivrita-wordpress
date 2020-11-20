@@ -7,6 +7,8 @@
       'FEMALE' => 'אישה', //$female_label,
       'NEUTRAL' => 'ניטראלי', //$neutral_label,
     );
+    $menu_style_icon = ['♂', '♀', '⚥'];
+    
     foreach ( $options as $key => $label ) {
       ?>
       <a href="#" class="ivrita-mode-changer" data-ivrita-mode="<?php echo esc_attr( $key ); ?>" data-ivrita-icon="<?php echo $menu_style_icon[$key]; ?>">
@@ -16,5 +18,5 @@
     }
     ?>
   </div>
-  <a class="ivrita-toolbar-info" href="<?php echo esc_attr( $info_link ); ?>" target="_blank" title="<?php echo esc_attr( 'About the Ivrita project', 'ivrita' ); ?>"><?php _e( 'Info', 'ivrita' ); ?> <i class="icon" data-icon="."></i></a>
+  <a class="ivrita-toolbar-info" href="<?php echo esc_attr( $info_link ); ?>" target="_blank" title="<?php echo esc_attr( 'About the Ivrita project', 'ivrita' ); ?>" data-ivrita-icon="ⓘ"><?php _e( 'Info', 'ivrita' ); ?></a>
 </div>

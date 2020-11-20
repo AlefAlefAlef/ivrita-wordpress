@@ -130,16 +130,28 @@
 
 .ivrita-switch a.ivrita-button.ivrita-button-style-2 { /* Venus & Mars*/
   -webkit-font-feature-settings: "ss02";
-  font-feature-settings: "ss02";    
+  font-feature-settings: "ss02";
 }
 
 .ivrita-switch a.ivrita-button.ivrita-button-style-3 { /* Hebrew M.F.X */
+  -webkit-font-feature-settings: "ss03";
+  font-feature-settings: "ss03";
 }
 .ivrita-switch a.ivrita-button.ivrita-button-style-4 { /* M.F.X */
+  -webkit-font-feature-settings: "ss04";
+  font-feature-settings: "ss04";
 }
 .ivrita-switch a.ivrita-button.ivrita-button-style-5 { /* Lips & Mustache */
+  -webkit-font-feature-settings: "ss05";
+  font-feature-settings: "ss05";
 }
 .ivrita-switch a.ivrita-button.ivrita-button-style-6 { /* Stick figures */
+  -webkit-font-feature-settings: "ss06";
+  font-feature-settings: "ss06";
+}
+.ivrita-switch a.ivrita-button.ivrita-button-style-7 { /* Plural Hebrew */
+  -webkit-font-feature-settings: "ss07";
+  font-feature-settings: "ss07";
 }
 .ivrita-switch a.ivrita-button:hover {
   background-color: rgba(0, 0, 0, 0.1);
@@ -154,6 +166,8 @@
 }
 .ivrita-switch a.ivrita-info-link:hover {
   color: #6306ec;
+  -webkit-font-feature-settings: "ss01";
+  font-feature-settings: "ss01";
 }
 
 .ivrita-switch:hover a.ivrita-info-link {
@@ -232,5 +246,8 @@
 }
 .ivrita-toolbar a.ivrita-toolbar-info:hover {
   border: none !important;
-  border-bottom: 1px solid !important;
+}
+.ivrita-toolbar a.ivrita-toolbar-info:hover:before {
+  -webkit-font-feature-settings: "ss01";
+  font-feature-settings: "ss01";
 }
