@@ -49,6 +49,10 @@ class IvritaWP {
   }
 
   public function print_switch() {
+    if ( ! $this->enabled_for_page() ) {
+      return;
+    }
+
     $position = $this->settings->get_field( 'switch_position' );
     $modes = $this->settings->get_field( 'modes' );
     $male_label = $modes['labels']['male'];
@@ -67,12 +71,15 @@ class IvritaWP {
   }
 
   public function enabled_for_page( $id = null ) {
+    global $post;
     if ( $id === null ) {
-      $id = get_the_ID();
+      $id = $post->ID;
     }
 
     // Globally enabled
     if ( !$this->settings->get_field( 'enable_global' ) ) {
+      return false;
+    } else if (get_post_meta( $id, '_ivrita_post_disable', true )) {
       return false;
     }
 

@@ -9,6 +9,10 @@ class IvritaAdmin {
     add_action( 'admin_menu', array( $this, 'create_settings_page' ) );
     add_action( 'admin_init', array( $this, 'setup_sections' ) );
     add_action( 'admin_init', array( $this, 'setup_fields' ) );
+
+    // Meta Boxes
+    add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
+    add_action( 'save_post', array( $this, 'save_meta_box_data' ), 10, 2 );
   }
 
   protected function init_fields() {
@@ -272,5 +276,66 @@ class IvritaAdmin {
       $default = $this->fields[$key]['default'];
     }
     return get_option('ivrita_' . $key, $default);
+  }
+
+
+  public function add_meta_boxes() {
+    add_meta_box(
+      'ivrita-post-settings',
+      __( 'Ivrita Per-Post Settings', 'ivrita' ),
+      array( $this, 'per_post_settings' ),
+      array( 'post', 'page' ),
+      'side'
+    );
+  }
+
+  public function per_post_settings($post) {
+    wp_nonce_field( 'ivrita_metabox_nonce', 'ivrita_metabox_nonce' ); // TODO: add the post id to the nonce
+    $value = get_post_meta( $post->ID, '_ivrita_post_disable', true );
+    ?>
+    <label for="ivrita-post-disable">
+      <input type="checkbox" name="ivrita-post-disable" id="ivrita-post-disable" class="postbox" <?php checked( $value ); ?> />
+      <?php _e( 'Disable Ivrita for this post', 'ivrita' ); ?>
+    </label>
+    <?php
+  }
+
+  public function save_meta_box_data( $post_id, $post ) {
+    /* Verify the nonce before proceeding. */
+    if ( !isset( $_POST['ivrita_metabox_nonce'] ) || !wp_verify_nonce( $_POST['ivrita_metabox_nonce'], 'ivrita_metabox_nonce' ) ) {
+      return $post_id;
+    }
+
+
+    /* Get the post type object. */
+    $post_type = get_post_type_object( $post->post_type );
+
+    /* Check if the current user has permission to edit the post. */
+    if ( !current_user_can( $post_type->cap->edit_post, $post_id ) ) {
+      return $post_id;
+    }
+
+    $new_meta_value = ( ( isset( $_POST['ivrita-post-disable'] ) && 'on' === $_POST['ivrita-post-disable'] ) ? true : '' );
+
+    /* Get the meta key. */
+    $meta_key = '_ivrita_post_disable';
+
+    /* Get the meta value of the custom field key. */
+    $meta_value = get_post_meta( $post_id, $meta_key, true );
+    
+    /* If a new meta value was added and there was no previous value, add it. */
+    if ( $new_meta_value && '' === $meta_value ) {
+      add_post_meta( $post_id, $meta_key, $new_meta_value, true );
+    }
+    
+    /* If the new meta value does not match the old value, update it. */
+    elseif ( $new_meta_value && $new_meta_value != $meta_value ) {
+      update_post_meta( $post_id, $meta_key, $new_meta_value );
+    }
+    
+    /* If there is no new meta value but an old value exists, delete it. */
+    elseif ( '' === $new_meta_value && $meta_value ) {
+      delete_post_meta( $post_id, $meta_key, $meta_value );
+    }
   }
 }
