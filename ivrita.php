@@ -63,13 +63,6 @@ class IvritaWP {
     include 'template-toolbar.php';
   }
 
-  public function inline_script() {
-    ob_start();
-    include 'inline-js.php';
-    $inline_js = ob_get_clean();
-    return $inline_js;
-  }
-
   public function enabled_for_page( $id = null ) {
     global $post;
     if ( $id === null ) {

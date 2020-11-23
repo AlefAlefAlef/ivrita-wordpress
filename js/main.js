@@ -8,15 +8,28 @@
   if (window._disableIvrita) {
     return;
   }
+  
+  var buttonsSelector = '.ivrita-mode-changer';
 
   window._ivrita = new Ivrita();
 
-  var mode;
-  if (mode = window.localStorage.getItem('ivrita-mode')) {
-    window._ivrita.setMode(Ivrita[mode]);
+  function setMode(newMode) {
+    document.querySelectorAll(buttonsSelector).forEach(function(btn) {
+      if (btn.dataset.ivritaMode === newMode) {
+        btn.classList.add('ivrita-active');
+      } else {
+        btn.classList.remove('ivrita-active');
+      }
+    });
+    window._ivrita.setMode(Ivrita[newMode]);
+    window.localStorage.setItem('ivrita-mode', newMode);
   }
 
-  var buttonsSelector = '.ivrita-mode-changer';
+
+  var mode;
+  if (mode = window.localStorage.getItem('ivrita-mode')) {
+    setMode(mode);
+  }
 
   function modeChangerClicked(e) {
     var btnMode = this.dataset.ivritaMode;
@@ -25,15 +38,7 @@
     }
 
     e.preventDefault();
-    document.querySelectorAll(buttonsSelector).forEach(function(btn){
-      if (btn.dataset.ivritaMode === btnMode) {
-        btn.classList.add('ivrita-active');
-      } else {
-        btn.classList.remove('ivrita-active');
-      }
-    });
-    window._ivrita.setMode(Ivrita[btnMode]);
-    window.localStorage.setItem('ivrita-mode', btnMode);
+    setMode(btnMode);
   }
 
   document.addEventListener('click', function(e) {
