@@ -10,7 +10,7 @@
  * Tested up to: 5.2
  *
  * Text Domain: ivrita
- * Domain Path: /i18n/
+ * Domain Path: /languages/
  *
  * @package WordPress
  * @author Reuven Karasik
@@ -31,12 +31,18 @@ class IvritaWP {
   private $info_link = 'https://alefalefalef.co.il/ivrita';
   
   function __construct() {
+    add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+
     $this->settings = new IvritaAdmin();
     add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 90 );
     add_action( 'wp_footer', array( $this, 'print_switch' ), 90 );
 
     // Shortcodes
     add_shortcode( 'ivrita-toolbar', array( $this, 'toolbar_html' ) );
+  }
+
+  public function load_textdomain() {
+    load_plugin_textdomain( 'ivrita', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
   }
 
   public function enqueue_scripts() {
@@ -55,12 +61,8 @@ class IvritaWP {
 
     $position = $this->settings->get_field( 'switch_position' );
     $modes = $this->settings->get_field( 'modes' );
-    $male_label = $modes['labels']['male'];
-    $female_label = $modes['labels']['female'];
-    $neutral_label = $modes['labels']['neutral'];
     $menu_style = $this->settings->get_field( 'menu_style' );
     include 'template-switch.php';
-    include 'template-toolbar.php';
   }
 
   public function enabled_for_page( $id = null ) {
@@ -97,8 +99,8 @@ class IvritaWP {
 
   public function toolbar_html() {
     $toolbar_id = $this->toolbar_count++;
-    $default_gender = 'NEUTRAL';
     $info_link = $this->info_link;
+    $modes = $this->settings->get_field( 'modes' );
     ob_start();
     include 'template-toolbar.php';
     $toolbar_html = ob_get_clean();

@@ -1,11 +1,16 @@
+<?php
+$male_label = $modes['labels']['male'];
+$female_label = $modes['labels']['female'];
+$neutral_label = $modes['labels']['neutral'];
+?>
 <div class="ivrita-toolbar" id="ivrita-toolbar-<?php echo intval($toolbar_id); ?>">
   <div class="ivrita-toolbar-menu">
     <div class="ivrita-toolbar-label"><?php _e( 'Reference tongue:', 'ivrita' ); ?></div>
     <?php
     $options = array(
-      'MALE' => 'זכר', //$male_label,
-      'FEMALE' => 'אישה', //$female_label,
-      'NEUTRAL' => 'ניטראלי', //$neutral_label,
+      'MALE' => $male_label,
+      'FEMALE' => $female_label,
+      'NEUTRAL' => $neutral_label,
     );
     $menu_style_icon = ['♂', '♀', '⚥'];
     

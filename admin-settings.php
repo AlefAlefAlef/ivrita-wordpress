@@ -5,7 +5,7 @@ class IvritaAdmin {
   protected $fields;
 
   function __construct() {
-    $this->init_fields();
+    add_action( 'plugins_loaded', array( $this, 'init_fields' ) );
     add_action( 'admin_menu', array( $this, 'create_settings_page' ) );
     add_action( 'admin_init', array( $this, 'setup_sections' ) );
     add_action( 'admin_init', array( $this, 'setup_fields' ) );
@@ -15,7 +15,7 @@ class IvritaAdmin {
     add_action( 'save_post', array( $this, 'save_meta_box_data' ), 10, 2 );
   }
 
-  protected function init_fields() {
+  public function init_fields() {
     $modes = array(
       'type' => 'matrix',
       'label' => __( 'Modes', 'ivrita' ),
@@ -272,10 +272,26 @@ class IvritaAdmin {
   }
 
   public function get_field( $key ) {
-    if ( $default === null && isset( $this->fields[$key] ) && $this->fields[$key]['default'] ) {
+    if ( isset( $this->fields[$key] ) && $this->fields[$key]['default'] ) {
       $default = $this->fields[$key]['default'];
     }
-    return get_option('ivrita_' . $key, $default);
+
+    $field = get_option('ivrita_' . $key, $default);
+
+    // Fix defaults for inner fields inside matrices
+    if ( isset( $this->fields[$key] ) && $this->fields[$key]['type'] === 'matrix' ) {
+      foreach ( (array) $this->fields[$key]['columns'] as $column_id => $column ) {
+        if ( $column['type'] === 'text' ) {
+          foreach ( (array) $field[$column_id] as $row_id => $row ) {
+            if ( ! $row ) {
+              $field[$column_id][$row_id] = $this->fields[$key]['rows'][$row_id]['default'][$column_id]; // TODO: cleanup
+            }
+          }
+        }
+      }
+    }
+
+    return $field;
   }
 
 
