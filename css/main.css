@@ -62,7 +62,7 @@
   border-radius: 0 7px 7px 0;
   transition: .2s all ease-out .1s;
   border: 1px solid #222;
-  font-size: 3em;
+  font-size: 3.2em;
   min-width: 1.2em;
   padding: 0.1em 0em 0;
   overflow: hidden;
@@ -110,7 +110,7 @@
   border-radius: 5px;
   height: 0;
   transition: .2s all ease-out;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 .ivrita-switch:hover a.ivrita-button{
   visibility: visible;
@@ -195,7 +195,7 @@
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  margin-bottom: 2.1em!important;
+  margin-bottom: 1.6em!important;
   padding: 0.5em 0.7em;
   overflow: auto;
   position: relative;
