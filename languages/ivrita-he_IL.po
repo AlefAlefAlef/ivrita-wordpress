@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ivrita\n"
 "POT-Creation-Date: 2020-11-24 21:08+0200\n"
-"PO-Revision-Date: 2020-11-25 11:33+0200\n"
+"PO-Revision-Date: 2020-11-25 11:47+0200\n"
 "Last-Translator: Reuven Karasik <rubik@karasik.org>\n"
 "Language-Team: Reuven Karasik <rubik@karasik.org>\n"
 "Language: he\n"
@@ -72,7 +72,7 @@ msgstr "שמאל"
 
 #: admin-settings.php:84
 msgid "The location of the floating switch on the entire website"
-msgstr "המיקום של הסרגל המרחף בצד לשינוי המגדר ברחבי האתר"
+msgstr "המיקום של סרגל עבריתה ברחבי האתר."
 
 #: admin-settings.php:89
 msgid "Menu style"
@@ -100,7 +100,7 @@ msgstr "שפם ושפתיים"
 
 #: admin-settings.php:98
 msgid "Stick figures"
-msgstr "א.נשות מקל"
+msgstr "דמויות גפרורים"
 
 #: admin-settings.php:105
 msgid "Enable for roles"
@@ -129,7 +129,7 @@ msgstr "עבריתה בעמוד זה"
 
 #: admin-settings.php:298
 msgid "Disable Ivrita for this post"
-msgstr "כבה את עבריתה בעמוד"
+msgstr "כבה את עבריתה ואת אימך (רק בעמוד זה)"
 
 #: template-toolbar.php:3
 msgid "Reference tongue:"
