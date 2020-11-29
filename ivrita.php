@@ -5,7 +5,6 @@
  * Plugin URI: https://alefalefalef.co.il/ivrita
  * Description: Genderize your website
  * Author: Reuven Karasik and Avraham Cornfeld
- * Author URI: https://alefalefalef.co.il/ivrita
  * Requires at least: 4.0
  * Tested up to: 5.2
  *
