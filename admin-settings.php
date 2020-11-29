@@ -282,9 +282,9 @@ class IvritaAdmin {
     if ( isset( $this->fields[$key] ) && $this->fields[$key]['type'] === 'matrix' ) {
       foreach ( (array) $this->fields[$key]['columns'] as $column_id => $column ) {
         if ( $column['type'] === 'text' ) {
-          foreach ( (array) $field[$column_id] as $row_id => $row ) {
-            if ( ! $row ) {
-              $field[$column_id][$row_id] = $this->fields[$key]['rows'][$row_id]['default'][$column_id]; // TODO: cleanup
+          foreach ( (array) $this->fields[$key]['rows'] as $row_id => $row ) {
+            if ( ! isset( $field[$column_id][$row_id] ) || ! $field[$column_id][$row_id] ) {
+              $field[$column_id][$row_id] = $this->fields[$key]['rows'][$row_id]['default'][$column_id];
             }
           }
         }
