@@ -15,7 +15,8 @@ DisplayStrings = (
 "/mercury/venus.ss02/mars.ss02/maleAndFemaleSign.ss02",
 "/mercury",
 "/maleAndFemaleSign/maleAndFemaleSign.ss01",
-""
+"",
+"/venus.ss04/mars.ss04/maleAndFemaleSign.ss04"
 );
 copyright = "Copyright © 2020 by AlefAlefAlef. All rights reserved.";
 customParameters = (
@@ -3510,7 +3511,7 @@ rightKerningGroup = alef;
 {
 color = 8;
 glyphname = venus.ss04;
-lastChange = "2020-11-20 04:37:48 +0000";
+lastChange = "2020-12-05 06:04:14 +0000";
 layers = (
 {
 layerId = "C43C9FC1-AECF-4743-B430-3C79B4516925";
@@ -3518,25 +3519,25 @@ paths = (
 {
 closed = 1;
 nodes = (
-"475 520 LINE",
-"475 600 LINE",
-"57 600 LINE",
-"57 0 LINE",
-"153 0 LINE",
-"153 520 LINE"
+"585 520 LINE",
+"585 600 LINE",
+"127 600 LINE",
+"127 0 LINE",
+"223 0 LINE",
+"223 520 LINE"
 );
 },
 {
 closed = 1;
 nodes = (
-"129 258 LINE",
-"450 258 LINE",
-"450 338 LINE",
-"129 338 LINE"
+"199 241 LINE",
+"560 241 LINE",
+"560 321 LINE",
+"199 321 LINE"
 );
 }
 );
-width = 519;
+width = 700;
 },
 {
 anchors = (
@@ -3616,13 +3617,12 @@ width = 531;
 }
 );
 leftKerningGroup = h.sc;
-leftMetricsKey = h.sc;
 rightKerningGroup = f.sc;
 },
 {
 color = 8;
 glyphname = mars.ss04;
-lastChange = "2020-11-20 04:37:51 +0000";
+lastChange = "2020-12-05 06:03:51 +0000";
 layers = (
 {
 layerId = "C43C9FC1-AECF-4743-B430-3C79B4516925";
@@ -3630,23 +3630,23 @@ paths = (
 {
 closed = 1;
 nodes = (
-"396 235 LINE",
-"196 600 LINE",
-"109 600 LINE",
-"109 0 LINE",
-"201 0 LINE",
-"201 424 LINE",
-"362 126 LINE",
-"430 126 LINE",
-"593 424 LINE",
-"593 0 LINE",
-"685 0 LINE",
-"685 600 LINE",
-"598 600 LINE"
+"349 235 LINE",
+"149 600 LINE",
+"62 600 LINE",
+"62 0 LINE",
+"154 0 LINE",
+"154 424 LINE",
+"315 126 LINE",
+"383 126 LINE",
+"546 424 LINE",
+"546 0 LINE",
+"638 0 LINE",
+"638 600 LINE",
+"551 600 LINE"
 );
 }
 );
-width = 794;
+width = 700;
 },
 {
 anchors = (
@@ -3722,14 +3722,13 @@ width = 848;
 }
 );
 leftKerningGroup = h.sc;
-leftMetricsKey = h.sc;
 rightKerningGroup = h.sc;
-rightMetricsKey = h.sc;
+rightMetricsKey = "=|";
 },
 {
 color = 8;
 glyphname = maleAndFemaleSign.ss04;
-lastChange = "2020-11-20 04:37:56 +0000";
+lastChange = "2020-12-05 06:04:18 +0000";
 layers = (
 {
 layerId = "C43C9FC1-AECF-4743-B430-3C79B4516925";
@@ -3737,26 +3736,26 @@ paths = (
 {
 closed = 1;
 nodes = (
-"570 2 LINE",
-"347 311 LINE",
-"555 598 LINE",
-"555 600 LINE",
-"450 600 LINE",
-"294 371 LINE",
-"138 600 LINE",
-"33 600 LINE",
-"33 598 LINE",
-"241 311 LINE",
-"18 2 LINE",
-"18 0 LINE",
-"124 0 LINE",
-"294 251 LINE",
-"464 0 LINE",
-"570 0 LINE"
+"636 2 LINE",
+"403 311 LINE",
+"621 598 LINE",
+"621 600 LINE",
+"516 600 LINE",
+"350 371 LINE",
+"184 600 LINE",
+"79 600 LINE",
+"79 598 LINE",
+"297 311 LINE",
+"64 2 LINE",
+"64 0 LINE",
+"170 0 LINE",
+"350 251 LINE",
+"530 0 LINE",
+"636 0 LINE"
 );
 }
 );
-width = 588;
+width = 700;
 },
 {
 anchors = (

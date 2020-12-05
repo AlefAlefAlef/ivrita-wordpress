@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ivrita\n"
 "POT-Creation-Date: 2020-11-24 21:08+0200\n"
-"PO-Revision-Date: 2020-11-25 11:47+0200\n"
+"PO-Revision-Date: 2020-12-05 09:10+0200\n"
 "Last-Translator: Reuven Karasik <rubik@karasik.org>\n"
 "Language-Team: Reuven Karasik <rubik@karasik.org>\n"
 "Language: he\n"
@@ -36,11 +36,11 @@ msgstr "תוית"
 
 #: admin-settings.php:36 admin-settings.php:38
 msgid "Male"
-msgstr "זכר"
+msgstr "איש"
 
 #: admin-settings.php:42 admin-settings.php:44
 msgid "Female"
-msgstr "נקבה"
+msgstr "אישה"
 
 #: admin-settings.php:48 admin-settings.php:50
 msgid "Neutral"
@@ -80,19 +80,19 @@ msgstr "סגנון תפריט"
 
 #: admin-settings.php:93
 msgid "Ivrita default"
-msgstr "ברירת המחדל של עבריתה"
+msgstr "ילדים/ות (ברירת מחדל)"
 
 #: admin-settings.php:94
 msgid "Venus & Mars"
-msgstr "נֹגה ומאדים"
+msgstr "סמלי נֹגה ומאדים"
 
 #: admin-settings.php:95
 msgid "Hebrew M.F.X"
-msgstr "ז/נ/א"
+msgstr "אותיות ז/נ/א"
 
 #: admin-settings.php:96
 msgid "M.F.X"
-msgstr "‫M/F/X"
+msgstr "אותיות ‫M/F/X"
 
 #: admin-settings.php:97
 msgid "Lips & mustache"
@@ -129,7 +129,7 @@ msgstr "עבריתה בעמוד זה"
 
 #: admin-settings.php:298
 msgid "Disable Ivrita for this post"
-msgstr "כבה את עבריתה ואת אימך (רק בעמוד זה)"
+msgstr "כיבוי עבריתה בעמוד זה"
 
 #: template-toolbar.php:3
 msgid "Reference tongue:"
