@@ -1,6 +1,6 @@
 === Ivrita ===
 Contributors: kinging, avraham
-Tags: hebrew
+Tags: hebrew, עברית, עבריתה
 Requires at least: 4.7
 Tested up to: 5.6
 Stable tag: trunk
