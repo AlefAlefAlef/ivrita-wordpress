@@ -1,8 +1,15 @@
 (function(fn) {
+  var fakeFn = function() {
+    if (window.jQuery) {
+      window.jQuery(fn);
+    } else {
+      fn();
+    }
+  }
   if (document.readyState != "loading"){
-    fn();
+    fakeFn();
   } else {
-    document.addEventListener("DOMContentLoaded", fn);
+    document.addEventListener("DOMContentLoaded", fakeFn);
   }
 })(function() {
   if (window._disableIvrita) {
