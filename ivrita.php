@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Ivrita
- * Version: 0.1
+ * Version: 0.1.2
  * Plugin URI: https://alefalefalef.co.il/ivrita
  * Description: Genderize your website
  * Author: Reuven Karasik and Avraham Cornfeld
