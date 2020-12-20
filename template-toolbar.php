@@ -8,16 +8,24 @@ $neutral_label = $modes['labels']['neutral'];
     <div class="ivrita-toolbar-label"><?php _e( 'Reference tongue:', 'ivrita' ); ?></div>
     <?php
     $options = array(
-      'MALE' => $male_label,
-      'FEMALE' => $female_label,
-      'NEUTRAL' => $neutral_label,
+      'MALE' => array(
+        'label' => $male_label,
+        'icon' => '♂',
+      ),
+      'FEMALE' => array(
+        'label' => $female_label,
+        'icon' => '♀',
+      ),
+      'NEUTRAL' => array(
+        'label' => $neutral_label,
+        'icon' => '⚥',
+      ),
     );
-    $menu_style_icon = ['♂', '♀', '⚥'];
     
-    foreach ( $options as $key => $label ) {
+    foreach ( $options as $key => $gender ) {
       ?>
-      <a href="#" class="ivrita-mode-changer" data-ivrita-mode="<?php echo esc_attr( $key ); ?>" data-ivrita-icon="<?php echo $menu_style_icon[$key]; ?>">
-        <?php echo esc_html( $label ); ?>
+      <a href="#" class="ivrita-mode-changer" data-ivrita-mode="<?php echo esc_attr( $key ); ?>" data-ivrita-icon="<?php echo $gender['icon']; ?>">
+        <?php echo esc_html( $gender['label'] ); ?>
       </a>
       <?php
     }
