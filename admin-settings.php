@@ -222,53 +222,76 @@ class IvritaAdmin {
         }).change();
       });
     </script>
+    <style>
+      label {
+        margin-left: 1em;
+      }
+
+      .matrix-table {
+        max-width: 25em;
+      }
+
+      .matrix-table tbody th {
+        padding: 0;
+        vertical-align: middle;
+      }
+
+      .matrix-table tbody td {
+        padding: 0.5em 0;
+      }
+    </style>
     <?php
   }
 
   protected function print_matrix( $field, $value = array() ) {
     ?>
-    <table style="max-width: 25em">
-      <tr>
-        <th></th>
-        <?php
-        foreach ( (array) $field['columns'] as $column ) {
-          ?>
-          <th>
-            <?php echo esc_html( $column['label'] ); ?>
-          </th>
-          <?php
-        }
-        ?>
-      </tr>
-      <?php
-      foreach ( (array) $field['rows'] as $row_id => $row ) {
-        ?>
+    <table class="form-table matrix-table">
+      <thead>
         <tr>
-          <th>
-            <?php echo esc_html( $row['label'] ); ?>
-          </th>
-          <?php foreach ( (array) $field['columns'] as $column_id => $column ) { ?>
-            <td>
-              <?php
-              switch ( $column['type'] ){
-              case 'text':
-              case 'number':
-                $name = sprintf( '%s[%s][%s]', $field['uid'], $column_id, $row_id );
-                $input_value = $value[$column_id][$row_id];
-                printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $name, $arguments['type'], $row['default'][$column_id], $input_value );
-                break;
-              case 'radio':
-                $name = sprintf( '%s[%s]', $field['uid'], $column_id );
-                printf( '<input name="%1$s" id="%1$s" type="radio" value="%2$s" %3$s />', $name, $row_id, checked( $value[$column_id], $row_id, false ) );
-                break;
-              }
-              ?>
-            </td>
-          <?php } ?>
+          <th></th>
+          <?php
+          foreach ( (array) $field['columns'] as $column ) {
+            ?>
+            <th>
+              <?php echo esc_html( $column['label'] ); ?>
+            </th>
+            <?php
+          }
+          ?>
         </tr>
+      </thead>
+      <tbody>
         <?php
-      }
-    ?> </table> <?php
+        foreach ( (array) $field['rows'] as $row_id => $row ) {
+          ?>
+          <tr>
+            <th>
+              <?php echo esc_html( $row['label'] ); ?>
+            </th>
+            <?php foreach ( (array) $field['columns'] as $column_id => $column ) { ?>
+              <td>
+                <?php
+                switch ( $column['type'] ){
+                case 'text':
+                case 'number':
+                  $name = sprintf( '%s[%s][%s]', $field['uid'], $column_id, $row_id );
+                  $input_value = $value[$column_id][$row_id];
+                  printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $name, $arguments['type'], $row['default'][$column_id], $input_value );
+                  break;
+                case 'radio':
+                  $name = sprintf( '%s[%s]', $field['uid'], $column_id );
+                  printf( '<input name="%1$s" id="%1$s" type="radio" value="%2$s" %3$s />', $name, $row_id, checked( $value[$column_id], $row_id, false ) );
+                  break;
+                }
+                ?>
+              </td>
+            <?php } ?>
+          </tr>
+          <?php
+        } ?> 
+      </tbody>
+    </table>
+    <?php
   }
 
   public function get_field( $key ) {
