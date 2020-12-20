@@ -21,33 +21,45 @@ class IvritaAdmin {
       'label' => __( 'Modes', 'ivrita' ),
       'section' => 'global_settings',
       'columns' => array(
+        'disabled' => array(
+          'label' => _x( 'Disable', 'The option to disable neutral mode in the admin settings page', 'ivrita' ),
+          'type' => 'checkbox',
+          'default' => false,
+          'rows' => array( 'neutral' ),
+        ),
         'default_mode' => array(
           'label' => __( 'Default', 'ivrita' ),
           'type' => 'radio',
           'default' => 'neutral'
         ),
-        'labels' => array(
+        'name' => array(
           'label' => __( 'Label', 'ivrita' ),
           'type' => 'text',
         ),
+        'icon' => array(
+          'type' => 'hidden',
+        )
       ),
       'rows' => array(
         'male' => array(
           'label' => __( 'Male', 'ivrita' ),
           'default' => array(
-            'labels' => __( 'Male', 'ivrita' ),
+            'name' => __( 'Male', 'ivrita' ),
+            'icon' => '♂',
           ),
         ),
         'female' => array(
           'label' => __( 'Female', 'ivrita' ),
           'default' => array(
-            'labels' => __( 'Female', 'ivrita' ),
+            'name' => __( 'Female', 'ivrita' ),
+            'icon' => '♀',
           ),
         ),
         'neutral' => array(
           'label' => __( 'Neutral', 'ivrita' ),
           'default' => array(
-            'labels' => __( 'Neutral', 'ivrita' ),
+            'name' => __( 'Neutral', 'ivrita' ),
+            'icon' => '⚥',
           ),
         ),
       ),
@@ -56,7 +68,8 @@ class IvritaAdmin {
       'default_mode' => $modes['columns']['default_mode']['default'],
     );
     foreach ( $modes['rows'] as $row_id => $row ) {
-      $modes['default']['labels'] = $row['default']['label'];
+      $modes['default']['label'] = $row['default']['label'];
+      $modes['default']['icon'] = $row['default']['icon'];
     }
 
 
@@ -251,6 +264,9 @@ class IvritaAdmin {
           <th></th>
           <?php
           foreach ( (array) $field['columns'] as $column ) {
+            if ( empty( $column['label'] ) ) {
+              continue;
+            }
             ?>
             <th>
               <?php echo esc_html( $column['label'] ); ?>
@@ -268,7 +284,14 @@ class IvritaAdmin {
             <th>
               <?php echo esc_html( $row['label'] ); ?>
             </th>
-            <?php foreach ( (array) $field['columns'] as $column_id => $column ) { ?>
+            <?php foreach ( (array) $field['columns'] as $column_id => $column ) {
+              if ( ! empty( $column['rows'] ) && ! in_array( $row_id, $column['rows'] ) ) {
+                ?>
+                <td></td>
+                <?php
+                continue;
+              }
+              ?>
               <td>
                 <?php
                 switch ( $column['type'] ){
@@ -281,6 +304,10 @@ class IvritaAdmin {
                 case 'radio':
                   $name = sprintf( '%s[%s]', $field['uid'], $column_id );
                   printf( '<input name="%1$s" id="%1$s" type="radio" value="%2$s" %3$s />', $name, $row_id, checked( $value[$column_id], $row_id, false ) );
+                  break;
+                case 'checkbox':
+                  $name = sprintf( '%s[%s][%s]', $field['uid'], $column_id, $row_id );
+                  printf( '<input name="%1$s" id="%1$s" type="checkbox" %2$s />', $name, checked( $value[$column_id][$row_id], 'on', false ) );
                   break;
                 }
                 ?>
@@ -301,20 +328,34 @@ class IvritaAdmin {
 
     $field = get_option('ivrita_' . $key, $default);
 
-    // Fix defaults for inner fields inside matrices
-    if ( isset( $this->fields[$key] ) && $this->fields[$key]['type'] === 'matrix' ) {
-      foreach ( (array) $this->fields[$key]['columns'] as $column_id => $column ) {
-        if ( $column['type'] === 'text' ) {
-          foreach ( (array) $this->fields[$key]['rows'] as $row_id => $row ) {
-            if ( ! isset( $field[$column_id][$row_id] ) || ! $field[$column_id][$row_id] ) {
-              $field[$column_id][$row_id] = $this->fields[$key]['rows'][$row_id]['default'][$column_id];
-            }
+    return $field;
+  }
+
+  public function get_matrix( $field_name ) {
+    $value = $this->get_field( $field_name );
+    $field = $this->fields[ $field_name ];
+    
+    $matrix = array();
+    foreach ( $field['rows'] as $row_id => $row ) {
+      $matrix[ $row_id ] = array();
+      foreach ( $field['columns'] as $column_id => $column ) {
+        if ( in_array( $column['type'], array( 'text', 'hidden' ) ) ) {
+          if ( isset( $value[ $column_id ][ $row_id ] ) && $value[ $column_id ][ $row_id ] ) {
+            $col_value = $value[ $column_id ][ $row_id ];
+          } else if ( isset( $row['default'] ) && $row['default'][ $column_id ] ) {
+            $col_value = $row['default'][ $column_id ];
           }
+        } else if ( in_array( $column['type'], array( 'radio' ) )) {
+          $col_value = $value[ $column_id ] === $row_id;
+        } else if ( in_array( $column['type'], array( 'checkbox' ) )) {
+          $col_value = $value[ $column_id ][ $row_id ] === 'on';
         }
+
+        $matrix[ $row_id ][ $column_id ] = $col_value;
       }
     }
 
-    return $field;
+    return $matrix;
   }
 
 

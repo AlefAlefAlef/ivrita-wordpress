@@ -59,7 +59,7 @@ class IvritaWP {
     }
 
     $position = $this->settings->get_field( 'switch_position' );
-    $modes = $this->settings->get_field( 'modes' );
+    $modes = $this->settings->get_matrix( 'modes' );
     $menu_style = $this->settings->get_field( 'menu_style' );
     include 'template-switch.php';
   }
@@ -99,15 +99,11 @@ class IvritaWP {
   public function toolbar_html() {
     $toolbar_id = $this->toolbar_count++;
     $info_link = $this->info_link;
-    $modes = $this->settings->get_field( 'modes' );
+    $modes = $this->settings->get_matrix( 'modes' );
     ob_start();
     include 'template-toolbar.php';
     $toolbar_html = ob_get_clean();
     return $toolbar_html;
-  }
-
-  public function print_toolbar() {
-    echo $this->toolbar_html();
   }
 }
 
