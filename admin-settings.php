@@ -9,6 +9,7 @@ class IvritaAdmin {
     add_action( 'admin_menu', array( $this, 'create_settings_page' ) );
     add_action( 'admin_init', array( $this, 'setup_sections' ) );
     add_action( 'admin_init', array( $this, 'setup_fields' ) );
+    add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 
     // Meta Boxes
     add_action( 'add_meta_boxes', array( $this, 'add_meta_boxes' ) );
@@ -37,6 +38,9 @@ class IvritaAdmin {
           'type' => 'text',
         ),
         'icon' => array(
+          'type' => 'hidden',
+        ),
+        'order' => array(
           'type' => 'hidden',
         )
       ),
@@ -162,6 +166,7 @@ class IvritaAdmin {
   
   public function setup_fields() {
     foreach( $this->fields as $id => $field ){
+      $field['id'] = $id;
       $field['uid'] = 'ivrita_' . $id;
       add_settings_field( $field['uid'], $field['label'], array( $this, 'field_callback' ), 'ivrita', $field['section'], $field );
       register_setting( 'ivrita', $field['uid'] );
@@ -221,7 +226,7 @@ class IvritaAdmin {
     }
   }
   
-  public function global_settings_section() {
+  public function global_settings_section () {
     ?>
     <script>
       jQuery(function($){
@@ -233,6 +238,14 @@ class IvritaAdmin {
             $other_checkboxes.prop('disabled', false);
           }
         }).change();
+
+        $('#field_matrix_modes tbody').sortable({
+          update: function( event, ui ) {
+            $(this).find('input[name^="ivrita_modes[order]"]').each(function(index){
+              $(this).val(index); // Set the new ordered index
+            });
+          }
+        });
       });
     </script>
     <style>
@@ -252,13 +265,21 @@ class IvritaAdmin {
       .matrix-table tbody td {
         padding: 0.5em 0;
       }
+
+      .matrix-table .ui-sortable-handle {
+        cursor: move;
+      }
+
+      .matrix-table .ui-sortable-helper td {
+        visibility: hidden;
+      }
     </style>
     <?php
   }
 
   protected function print_matrix( $field, $value = array() ) {
     ?>
-    <table class="form-table matrix-table">
+    <table class="form-table matrix-table" id="field_matrix_<?php echo esc_attr( $field['id'] ); ?>">
       <thead>
         <tr>
           <th></th>
@@ -278,6 +299,13 @@ class IvritaAdmin {
       </thead>
       <tbody>
         <?php
+        if ( in_array( 'order', array_keys( $field['columns'] ) ) ) {
+          uksort($field['rows'], function ($row1, $row2) use ($value) {
+            if ($value['order'][$row1] == $value['order'][$row2]) return 0;
+            return $value['order'][$row1] < $value['order'][$row2] ? -1 : 1;
+          });
+        }
+
         foreach ( (array) $field['rows'] as $row_id => $row ) {
           ?>
           <tr>
@@ -291,13 +319,14 @@ class IvritaAdmin {
                 <?php
                 continue;
               }
-              ?>
+
+              if ( $column['type'] !== 'hidden' ) { ?>
               <td>
-                <?php
+                <?php }
+                $name = sprintf( '%s[%s][%s]', $field['uid'], $column_id, $row_id );
                 switch ( $column['type'] ){
                 case 'text':
                 case 'number':
-                  $name = sprintf( '%s[%s][%s]', $field['uid'], $column_id, $row_id );
                   $input_value = $value[$column_id][$row_id];
                   printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $name, $arguments['type'], $row['default'][$column_id], $input_value );
                   break;
@@ -306,13 +335,16 @@ class IvritaAdmin {
                   printf( '<input name="%1$s" id="%1$s" type="radio" value="%2$s" %3$s />', $name, $row_id, checked( $value[$column_id], $row_id, false ) );
                   break;
                 case 'checkbox':
-                  $name = sprintf( '%s[%s][%s]', $field['uid'], $column_id, $row_id );
                   printf( '<input name="%1$s" id="%1$s" type="checkbox" %2$s />', $name, checked( $value[$column_id][$row_id], 'on', false ) );
                   break;
+                case 'hidden':
+                  printf( '<input name="%1$s" id="%1$s" type="hidden" value="%2$s" />', $name, $value[$column_id][$row_id] );
                 }
-                ?>
+              
+                if ( $column['type'] !== 'hidden' ) { ?>
               </td>
-            <?php } ?>
+              <?php }
+            } ?>
           </tr>
           <?php
         } ?> 
@@ -339,6 +371,8 @@ class IvritaAdmin {
     foreach ( $field['rows'] as $row_id => $row ) {
       $matrix[ $row_id ] = array();
       foreach ( $field['columns'] as $column_id => $column ) {
+        $col_value = null;
+
         if ( in_array( $column['type'], array( 'text', 'hidden' ) ) ) {
           if ( isset( $value[ $column_id ][ $row_id ] ) && $value[ $column_id ][ $row_id ] ) {
             $col_value = $value[ $column_id ][ $row_id ];
@@ -355,9 +389,23 @@ class IvritaAdmin {
       }
     }
 
+    if ( in_array( 'order', array_keys( $field['columns'] ) ) ) {
+      uasort($matrix, function ($row1, $row2) {
+        if ($row1['order'] == $row2['order']) return 0;
+        return $row1['order'] < $row2['order'] ? -1 : 1;
+      });
+    }
+
     return $matrix;
   }
 
+  public function enqueue_admin_scripts( $hook_suffix ) {
+    if ( $hook_suffix != 'toplevel_page_ivrita' ) {
+      return;
+    }
+    
+    wp_enqueue_script( 'jquery-ui-sortable' );
+  }
 
   public function add_meta_boxes() {
     add_meta_box(
