@@ -49,21 +49,21 @@ class IvritaAdmin {
           'label' => __( 'Male', 'ivrita' ),
           'default' => array(
             'name' => __( 'Male', 'ivrita' ),
-            'icon' => '♂',
+            'icon' => '&#x2642;',
           ),
         ),
         'female' => array(
           'label' => __( 'Female', 'ivrita' ),
           'default' => array(
             'name' => __( 'Female', 'ivrita' ),
-            'icon' => '♀',
+            'icon' => '&#x2640;',
           ),
         ),
         'neutral' => array(
           'label' => __( 'Neutral', 'ivrita' ),
           'default' => array(
             'name' => __( 'Neutral', 'ivrita' ),
-            'icon' => '⚥',
+            'icon' => '&#9893;',
           ),
         ),
       ),
@@ -129,6 +129,15 @@ class IvritaAdmin {
         'helper' => '',
         'supplemental' => '',
         'default'     => array( 'everyone' => 'on' ),
+      ),
+      'use_local_js' => array(
+        'label' => __( 'Local JS', 'ivrita' ),
+        'section' => 'global_settings',
+        'type' => 'checkbox',
+        'placeholder' => false,
+        'helper' => __( 'Use local JavaScript file instead of secure, cached, fast CDN', 'ivrita' ),
+        'supplemental' => __( 'Tip: Use this only if you know what you\'re doing!', 'ivrita' ),
+        'default' => false
       ),
     );
   }

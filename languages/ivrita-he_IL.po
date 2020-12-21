@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ivrita\n"
-"POT-Creation-Date: 2020-12-20 22:17+0200\n"
-"PO-Revision-Date: 2020-12-20 22:18+0200\n"
+"POT-Creation-Date: 2020-12-21 14:42+0200\n"
+"PO-Revision-Date: 2020-12-21 15:19+0200\n"
 "Last-Translator: Reuven Karasik <rubik@karasik.org>\n"
 "Language-Team: Reuven Karasik <rubik@karasik.org>\n"
 "Language: he\n"
@@ -115,24 +115,36 @@ msgstr "עבריתה תפעל עבור התפקידים הבאים:"
 msgid "Everyone"
 msgstr "כל מבקרי/ות האתר"
 
-#: admin-settings.php:137 admin-settings.php:151
+#: admin-settings.php:134
+msgid "Local JS"
+msgstr "JS מקומי"
+
+#: admin-settings.php:138
+msgid "Use local JavaScript file instead of secure, cached, fast CDN"
+msgstr "שימוש בקובץ JavaScript מקומי במקום ב־CDN מאובטח, מהיר ועדכני"
+
+#: admin-settings.php:139
+msgid "Tip: Use this only if you know what you're doing!"
+msgstr "זהירות: אפשרות זו היא למתקדמות.ים!"
+
+#: admin-settings.php:146 admin-settings.php:160
 msgid "Ivrita Settings"
 msgstr "הגדרות עבריתה"
 
-#: admin-settings.php:138
+#: admin-settings.php:147
 msgctxt "menu title"
 msgid "Ivrita"
 msgstr "עבריתה"
 
-#: admin-settings.php:164
+#: admin-settings.php:173
 msgid "Global Settings"
 msgstr "הגדרות כלליות"
 
-#: admin-settings.php:413
+#: admin-settings.php:422
 msgid "Ivrita Per-Post Settings"
 msgstr "עבריתה בעמוד זה"
 
-#: admin-settings.php:426
+#: admin-settings.php:435
 msgid "Disable Ivrita for this post"
 msgstr "כיבוי עבריתה בעמוד זה"
 

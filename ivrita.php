@@ -23,17 +23,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once 'admin-settings.php';
 
 class IvritaWP {
+  private $js_version = '0.1.2';
   
   // This is used to uniquify each toolbar to make sure they won't collide
   private $toolbar_count = 0;
 
   private $info_link = 'https://alefalefalef.co.il/ivrita';
   
+  private $javascript_uri = 'https://ivrita.alefalefalef.co.il/ivrita.min.js';
+  
   function __construct() {
     add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
     $this->settings = new IvritaAdmin();
-    add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 90 );
+    add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
     add_action( 'wp_footer', array( $this, 'print_switch' ), 90 );
 
     // Shortcodes
@@ -45,11 +48,16 @@ class IvritaWP {
   }
 
   public function enqueue_scripts() {
-    wp_enqueue_style( 'ivrita-css', plugin_dir_url( __FILE__ ) . 'css/main.css', array(), '1.0' );
-    wp_enqueue_script( 'ivrita-lib-js', plugin_dir_url( __FILE__ ) . 'js/ivrita.min.js', array(), '1.0', true );
+    wp_enqueue_style( 'ivrita-css', plugin_dir_url( __FILE__ ) . 'css/main.css', array(), $this->js_version );
+    
+    if ( $this->settings->get_field( 'use_local_js' ) ) {
+      wp_register_script( 'ivrita-lib-js', plugin_dir_url( __FILE__ ) . 'js/ivrita.min.js', array(), $this->js_version, true );
+    } else {
+      wp_register_script( 'ivrita-lib-js', $this->javascript_uri, array(), $this->js_version, true );
+    }
     
     if ( $this->enabled_for_page() ) {
-      wp_enqueue_script( 'ivrita-wp-js', plugin_dir_url( __FILE__ ) . 'js/main.js', array( 'ivrita-lib-js' ), '1.0', true );
+      wp_enqueue_script( 'ivrita-wp-js', plugin_dir_url( __FILE__ ) . 'js/main.js', array( 'ivrita-lib-js' ), $this->js_version, true );
     }
   }
 
