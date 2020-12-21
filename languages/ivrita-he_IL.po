@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ivrita\n"
 "POT-Creation-Date: 2020-12-21 14:42+0200\n"
-"PO-Revision-Date: 2020-12-21 14:44+0200\n"
+"PO-Revision-Date: 2020-12-21 15:19+0200\n"
 "Last-Translator: Reuven Karasik <rubik@karasik.org>\n"
 "Language-Team: Reuven Karasik <rubik@karasik.org>\n"
 "Language: he\n"
@@ -121,7 +121,7 @@ msgstr "JS מקומי"
 
 #: admin-settings.php:138
 msgid "Use local JavaScript file instead of secure, cached, fast CDN"
-msgstr "השתמש בקובץ JavaScript מקומי במקום ב־CDN מאובטח, מהיר ועדכני"
+msgstr "שימוש בקובץ JavaScript מקומי במקום ב־CDN מאובטח, מהיר ועדכני"
 
 #: admin-settings.php:139
 msgid "Tip: Use this only if you know what you're doing!"
