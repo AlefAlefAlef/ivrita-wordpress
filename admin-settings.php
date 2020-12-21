@@ -263,9 +263,13 @@ class IvritaAdmin {
       }
 
       .matrix-table {
-        max-width: 25em;
+        max-width: 45em;
       }
 
+      .matrix-table thead th {
+        padding: 0 0 7px !important;
+        line-height: 1em;
+      }
       .matrix-table tbody th {
         padding: 0;
         vertical-align: middle;
@@ -273,6 +277,10 @@ class IvritaAdmin {
 
       .matrix-table tbody td {
         padding: 0.5em 0;
+      }
+
+      .matrix-table tr {
+        border-bottom: 1px solid rgba(0,0,0,0.4);
       }
 
       .matrix-table .ui-sortable-handle {
