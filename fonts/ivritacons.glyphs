@@ -2,21 +2,17 @@
 .appVersion = "1342";
 DisplayStrings = (
 "/venus.ss01",
-"!?/space/sheqel/alephsymbol/gimelsymbol/northWestArrowToCorner/blackstar/ballotBox/ballotBoxWithCheck/ballotBoxWithX/peace/yinyang/whiteSmilingFace/venus/mars/heartWhiteSuit/heartBlackSuit/maleAndFemaleSign/heavyAsterisk/nullControl/venus.ss01/mars.ss01/maleAndFemaleSign.ss01/venus.ss02/mars.ss02/maleAndFemaleSign.ss02",
-"",
-"/gimelsymbol",
-"/space/space/space",
-"",
+"/space/alephsymbol/northWestArrowToCorner/blackstar/ballotBox/ballotBoxWithCheck/ballotBoxWithX/peace/yinyang/whiteSmilingFace/venus/mars/heartWhiteSuit/heartBlackSuit/maleAndFemaleSign/heavyAsterisk/nullControl/venus.ss01/mars.ss01/maleAndFemaleSign.ss01/venus.ss02/mars.ss02/maleAndFemaleSign.ss02",
 "",
 "/space/space/space",
-"",
+"/space/space/space",
 "/space/i.circled/i.circled.ss01/space/space/heartBlackSuit/maleAndFemaleSign/heavyAsterisk/nullControl/venus.ss01/i.circled",
-"/space/space/space/space/space/space/space \012/venus/mars/maleAndFemaleSign \012/venus.ss02/mars.ss02/maleAndFemaleSign.ss02 \012!?/space/sheqel/space/alephsymbol/gimelsymbol/northWestArrowToCorner/blackstar/ballotBox/ballotBoxWithCheck/ballotBoxWithX/peace/yinyang/whiteSmilingFace/space/heartWhiteSuit/heartBlackSuit/heavyAsterisk/nullControl/venus.ss01/mars.ss01/maleAndFemaleSign.ss01",
+"/space/space/space/space/space/space/space \012/venus/mars/maleAndFemaleSign \012/venus.ss02/mars.ss02/maleAndFemaleSign.ss02 \012/space/space/alephsymbol/northWestArrowToCorner/blackstar/ballotBox/ballotBoxWithCheck/ballotBoxWithX/peace/yinyang/whiteSmilingFace/space/heartWhiteSuit/heartBlackSuit/heavyAsterisk/nullControl/venus.ss01/mars.ss01/maleAndFemaleSign.ss01",
 "/mercury/venus.ss02/mars.ss02/maleAndFemaleSign.ss02",
 "/mercury",
 "/maleAndFemaleSign/maleAndFemaleSign.ss01",
-"",
-"/venus.ss04/mars.ss04/maleAndFemaleSign.ss04"
+"/venus.ss04/mars.ss04/maleAndFemaleSign.ss04",
+"/space/northWestArrowToCorner"
 );
 copyright = "Copyright © 2020 by AlefAlefAlef. All rights reserved.";
 customParameters = (
@@ -44,7 +40,8 @@ designerURL = "https://alefalefalef.co.il/author/avraham/";
 familyName = "Ivritacons v1 AlefAlefAlef";
 featurePrefixes = (
 {
-code = "languagesystem DFLT dflt;\012\012languagesystem hebr dflt;\012\012languagesystem hebr IWR;";
+automatic = 1;
+code = "languagesystem DFLT dflt;\012";
 name = Languagesystems;
 }
 );
@@ -236,105 +233,6 @@ xHeight = 550;
 );
 glyphs = (
 {
-glyphname = exclam;
-lastChange = "2020-11-15 15:25:22 +0000";
-layers = (
-{
-layerId = "C43C9FC1-AECF-4743-B430-3C79B4516925";
-paths = (
-{
-closed = 1;
-nodes = (
-"208 628 LINE",
-"99 628 LINE",
-"111 213 LINE",
-"195 213 LINE"
-);
-},
-{
-closed = 1;
-nodes = (
-"192 -6 OFFCURVE",
-"222 25 OFFCURVE",
-"222 63 CURVE SMOOTH",
-"222 102 OFFCURVE",
-"192 133 OFFCURVE",
-"153 133 CURVE SMOOTH",
-"115 133 OFFCURVE",
-"84 102 OFFCURVE",
-"84 63 CURVE SMOOTH",
-"84 25 OFFCURVE",
-"115 -6 OFFCURVE",
-"153 -6 CURVE SMOOTH"
-);
-}
-);
-width = 306;
-}
-);
-leftKerningGroup = exclam;
-rightKerningGroup = exclam;
-rightMetricsKey = "=|";
-unicode = 0021;
-},
-{
-glyphname = question;
-lastChange = "2020-11-15 15:25:06 +0000";
-layers = (
-{
-layerId = "C43C9FC1-AECF-4743-B430-3C79B4516925";
-paths = (
-{
-closed = 1;
-nodes = (
-"312 186 LINE",
-"308 321 OFFCURVE",
-"513 287 OFFCURVE",
-"513 447 CURVE SMOOTH",
-"513 563 OFFCURVE",
-"433 627 OFFCURVE",
-"303 629 CURVE SMOOTH",
-"169 631 OFFCURVE",
-"74 558 OFFCURVE",
-"50 432 CURVE",
-"130 412 LINE",
-"152 505 OFFCURVE",
-"215 552 OFFCURVE",
-"299 552 CURVE SMOOTH",
-"379 552 OFFCURVE",
-"425 515 OFFCURVE",
-"425 452 CURVE SMOOTH",
-"425 330 OFFCURVE",
-"221 372 OFFCURVE",
-"227 186 CURVE"
-);
-},
-{
-closed = 1;
-nodes = (
-"305 -5 OFFCURVE",
-"333 23 OFFCURVE",
-"333 58 CURVE SMOOTH",
-"333 92 OFFCURVE",
-"305 120 OFFCURVE",
-"270 120 CURVE SMOOTH",
-"235 120 OFFCURVE",
-"207 92 OFFCURVE",
-"207 58 CURVE SMOOTH",
-"207 23 OFFCURVE",
-"235 -5 OFFCURVE",
-"270 -5 CURVE SMOOTH"
-);
-}
-);
-width = 577;
-}
-);
-leftKerningGroup = question;
-rightKerningGroup = question;
-unicode = 003F;
-},
-{
 glyphname = space;
 layers = (
 {
@@ -346,58 +244,6 @@ leftKerningGroup = space;
 note = space;
 rightKerningGroup = space;
 unicode = 0020;
-},
-{
-glyphname = sheqel;
-lastChange = "2020-11-14 14:24:35 +0000";
-layers = (
-{
-layerId = "C43C9FC1-AECF-4743-B430-3C79B4516925";
-paths = (
-{
-closed = 1;
-nodes = (
-"642 0 LINE SMOOTH",
-"746 0 OFFCURVE",
-"780 52 OFFCURVE",
-"780 161 CURVE SMOOTH",
-"780 600 LINE",
-"694 600 LINE",
-"694 179 LINE SMOOTH",
-"694 103 OFFCURVE",
-"677 70 OFFCURVE",
-"606 70 CURVE SMOOTH",
-"382 70 LINE",
-"382 426 LINE",
-"301 426 LINE",
-"301 0 LINE"
-);
-},
-{
-closed = 1;
-nodes = (
-"235 600 LINE SMOOTH",
-"131 600 OFFCURVE",
-"96 548 OFFCURVE",
-"96 439 CURVE SMOOTH",
-"96 0 LINE",
-"183 0 LINE",
-"183 421 LINE SMOOTH",
-"183 497 OFFCURVE",
-"199 530 OFFCURVE",
-"271 530 CURVE SMOOTH",
-"494 530 LINE",
-"494 174 LINE",
-"575 174 LINE",
-"575 600 LINE"
-);
-}
-);
-width = 877;
-}
-);
-note = newsheqelsign;
-unicode = 20AA;
 },
 {
 glyphname = alephsymbol;
@@ -630,103 +476,6 @@ width = 725;
 );
 rightMetricsKey = "=|";
 unicode = 2135;
-},
-{
-glyphname = gimelsymbol;
-layers = (
-{
-layerId = "C43C9FC1-AECF-4743-B430-3C79B4516925";
-paths = (
-{
-closed = 1;
-nodes = (
-"353 305 OFFCURVE",
-"326 332 OFFCURVE",
-"326 363 CURVE",
-"326 393 OFFCURVE",
-"353 419 OFFCURVE",
-"383 419 CURVE",
-"413 419 OFFCURVE",
-"440 393 OFFCURVE",
-"440 363 CURVE",
-"440 332 OFFCURVE",
-"413 305 OFFCURVE",
-"383 305 CURVE"
-);
-},
-{
-closed = 1;
-nodes = (
-"339 188 OFFCURVE",
-"428 187 OFFCURVE",
-"552 250 CURVE",
-"522 315 LINE",
-"415 262 OFFCURVE",
-"352 262 OFFCURVE",
-"245 315 CURVE",
-"215 250 LINE"
-);
-},
-{
-closed = 1;
-nodes = (
-"300 592 OFFCURVE",
-"233 614 OFFCURVE",
-"112 640 CURVE",
-"93 565 LINE",
-"152 554 OFFCURVE",
-"225 534 OFFCURVE",
-"327 502 CURVE",
-"508 443 OFFCURVE",
-"604 348 OFFCURVE",
-"604 227 CURVE SMOOTH",
-"604 125 OFFCURVE",
-"511 37 OFFCURVE",
-"383 37 CURVE SMOOTH",
-"256 37 OFFCURVE",
-"163 125 OFFCURVE",
-"163 227 CURVE SMOOTH",
-"163 348 OFFCURVE",
-"258 443 OFFCURVE",
-"440 502 CURVE",
-"541 534 OFFCURVE",
-"615 554 OFFCURVE",
-"674 565 CURVE",
-"654 640 LINE",
-"534 614 OFFCURVE",
-"466 592 OFFCURVE",
-"329 537 CURVE",
-"148 452 OFFCURVE",
-"87 341 OFFCURVE",
-"87 224 CURVE SMOOTH",
-"87 95 OFFCURVE",
-"200 -38 OFFCURVE",
-"383 -38 CURVE SMOOTH",
-"566 -38 OFFCURVE",
-"680 95 OFFCURVE",
-"680 224 CURVE SMOOTH",
-"680 341 OFFCURVE",
-"618 452 OFFCURVE",
-"437 537 CURVE"
-);
-},
-{
-closed = 1;
-nodes = (
-"257 139 LINE",
-"318 94 LINE",
-"383 181 LINE",
-"448 94 LINE",
-"510 139 LINE",
-"430 242 LINE",
-"336 242 LINE"
-);
-}
-);
-width = 757;
-}
-);
-unicode = 2137;
 },
 {
 glyphname = northWestArrowToCorner;
