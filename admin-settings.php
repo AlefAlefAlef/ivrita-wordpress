@@ -130,6 +130,15 @@ class IvritaAdmin {
         'supplemental' => '',
         'default'     => array( 'everyone' => 'on' ),
       ),
+      'use_local_js' => array(
+        'label' => __( 'Local JS', 'ivrita' ),
+        'section' => 'global_settings',
+        'type' => 'checkbox',
+        'placeholder' => false,
+        'helper' => __( 'Use local JavaScript file instead of secure, cached, fast CDN', 'ivrita' ),
+        'supplemental' => __( 'Tip: Use this only if you know what you\'re doing!', 'ivrita' ),
+        'default' => false
+      ),
     );
   }
   
