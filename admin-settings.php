@@ -49,21 +49,21 @@ class IvritaAdmin {
           'label' => __( 'Male', 'ivrita' ),
           'default' => array(
             'name' => __( 'Male', 'ivrita' ),
-            'icon' => '♂',
+            'icon' => '&#x2642;&#xFE0E;',
           ),
         ),
         'female' => array(
           'label' => __( 'Female', 'ivrita' ),
           'default' => array(
             'name' => __( 'Female', 'ivrita' ),
-            'icon' => '♀',
+            'icon' => '&#x2640;&#xFE0E;',
           ),
         ),
         'neutral' => array(
           'label' => __( 'Neutral', 'ivrita' ),
           'default' => array(
             'name' => __( 'Neutral', 'ivrita' ),
-            'icon' => '⚥',
+            'icon' => '&#x26A5;&#xFE0E;',
           ),
         ),
       ),

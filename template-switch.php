@@ -8,7 +8,7 @@ if ( 'right' === $position ) {
   echo 'ivrita-switch--right';
 }
 ?>">
-  <a href="#" class="ivrita-logo" title="<?php echo esc_attr( 'Ivrita', 'ivrita' ); ?>">⚥</a>
+  <a href="#" class="ivrita-logo" title="<?php echo esc_attr( 'Ivrita', 'ivrita' ); ?>">&#x26A5;&#xFE0E;</a>
 
   <?php
   foreach ( $modes as $mode_key => $mode ) {
