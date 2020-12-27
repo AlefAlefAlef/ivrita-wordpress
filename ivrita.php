@@ -74,14 +74,14 @@ class IvritaWP {
 
   public function enabled_for_page( $id = null ) {
     global $post;
-    if ( $id === null ) {
-      $id = $post->ID;
+    if ( $id === null && is_single() ) {
+      $id = get_the_ID();
     }
 
     // Globally enabled
     if ( !$this->settings->get_field( 'enable_global' ) ) {
       return false;
-    } else if (get_post_meta( $id, '_ivrita_post_disable', true )) {
+    } else if ($id && get_post_meta( $id, '_ivrita_post_disable', true )) {
       return false;
     }
 
