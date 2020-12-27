@@ -202,6 +202,7 @@
   align-items: center;
   background: rgba(0, 0, 0, 0.03);
   color: #333333;
+  font-size: 18px;
 }
 
 .ivrita-toolbar .ivrita-toolbar-label {
@@ -261,5 +262,8 @@
   }
   .ivrita-switch a{
     margin: 0;
+  }
+  .ivrita-toolbar {
+    font-size: 13px;
   }
 }
