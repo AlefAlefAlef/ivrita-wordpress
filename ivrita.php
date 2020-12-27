@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Ivrita
- * Version: 0.1.2
+ * Version: 0.1.3
  * Plugin URI: https://alefalefalef.co.il/ivrita
  * Description: Genderize your website
  * Author: Reuven Karasik and Avraham Cornfeld
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 require_once 'admin-settings.php';
 
 class IvritaWP {
-  private $js_version = '0.1.2';
+  private $js_version = '0.1.3';
   
   // This is used to uniquify each toolbar to make sure they won't collide
   private $toolbar_count = 0;
