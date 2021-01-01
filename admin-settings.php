@@ -72,8 +72,13 @@ class IvritaAdmin {
       'default_mode' => $modes['columns']['default_mode']['default'],
     );
     foreach ( $modes['rows'] as $row_id => $row ) {
-      $modes['default']['label'] = $row['default']['label'];
-      $modes['default']['icon'] = $row['default']['icon'];
+      if ( isset( $row['default']['label'] ) ) {
+        $modes['default']['label'] = $row['default']['label'];
+      }
+
+      if ( isset( $row['default']['icon'] ) ) {
+        $modes['default']['icon'] = $row['default']['icon'];
+      }
     }
 
 
@@ -371,6 +376,7 @@ class IvritaAdmin {
   }
 
   public function get_field( $key ) {
+    $default = null;
     if ( isset( $this->fields[$key] ) && $this->fields[$key]['default'] ) {
       $default = $this->fields[$key]['default'];
     }
