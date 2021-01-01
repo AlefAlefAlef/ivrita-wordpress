@@ -31,6 +31,8 @@ class IvritaWP {
   private $info_link = 'https://alefalefalef.co.il/ivrita';
   
   private $javascript_uri = 'https://ivrita.alefalefalef.co.il/ivrita.min.js';
+
+  public $settings;
   
   function __construct() {
     add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
@@ -58,7 +60,23 @@ class IvritaWP {
     
     if ( $this->enabled_for_page() ) {
       wp_enqueue_script( 'ivrita-wp-js', plugin_dir_url( __FILE__ ) . 'js/main.js', array( 'ivrita-lib-js' ), $this->js_version, true );
+      
+      if ( is_singular() ) {
+        $title_male = $this->settings->get_post_field( 'title_male' );
+        $title_female = $this->settings->get_post_field( 'title_female' );
+        $title_neutral = $this->settings->get_post_field( 'title_neutral' );
+
+        if ( $title_male || $title_female || $title_neutral ) {
+          wp_localize_script( 'ivrita-wp-js', '_ivrita_titles', array(
+            'male' => $title_male,
+            'female' => $title_female,
+            'neutral' => $title_neutral,
+            'current' => get_the_title(),
+          ) );
+        }
+      }
     }
+
   }
 
   public function print_switch() {
@@ -74,14 +92,14 @@ class IvritaWP {
 
   public function enabled_for_page( $id = null ) {
     global $post;
-    if ( $id === null && is_single() ) {
+    if ( $id === null && is_singular() ) {
       $id = get_the_ID();
     }
 
     // Globally enabled
     if ( !$this->settings->get_field( 'enable_global' ) ) {
       return false;
-    } else if ($id && get_post_meta( $id, '_ivrita_post_disable', true )) {
+    } else if ($id && 'on' === $this->settings->get_post_field( 'disable', $id )) {
       return false;
     }
 
@@ -118,3 +136,7 @@ class IvritaWP {
 global $ivrita;
 $ivrita = new IvritaWP();
 
+function ivrita() {
+  global $ivrita;
+  return $ivrita;
+}

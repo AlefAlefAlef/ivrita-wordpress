@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ivrita\n"
-"POT-Creation-Date: 2020-12-21 14:42+0200\n"
-"PO-Revision-Date: 2020-12-21 15:19+0200\n"
+"POT-Creation-Date: 2021-01-01 19:50+0200\n"
+"PO-Revision-Date: 2021-01-01 19:54+0200\n"
 "Last-Translator: Reuven Karasik <rubik@karasik.org>\n"
 "Language-Team: Reuven Karasik <rubik@karasik.org>\n"
 "Language: he\n"
@@ -51,102 +51,118 @@ msgstr "אישה"
 msgid "Neutral"
 msgstr "ניטרלי"
 
-#: admin-settings.php:82
+#: admin-settings.php:87
 msgid "Global Enable"
 msgstr "הפעלה גלובלית"
 
-#: admin-settings.php:87
+#: admin-settings.php:92
 msgid "Enable everywhere in the website"
 msgstr "הפעלה בכל רחבי האתר"
 
-#: admin-settings.php:88
+#: admin-settings.php:93
 msgid "You can turn this off/on for each post individually."
 msgstr "ניתן לשנות הגדרה זו עבור כל פוסט/עמוד בנפרד."
 
-#: admin-settings.php:92
+#: admin-settings.php:97
 msgid "Switch Position"
 msgstr "מיקום הסרגל"
 
-#: admin-settings.php:96
+#: admin-settings.php:101
 msgid "Right"
 msgstr "ימין"
 
-#: admin-settings.php:97
+#: admin-settings.php:102
 msgid "Left"
 msgstr "שמאל"
 
-#: admin-settings.php:101
+#: admin-settings.php:106
 msgid "The location of the floating switch on the entire website"
 msgstr "המיקום של סרגל עבריתה ברחבי האתר."
 
-#: admin-settings.php:106
+#: admin-settings.php:111
 msgid "Menu style"
 msgstr "סגנון תפריט"
 
-#: admin-settings.php:110
+#: admin-settings.php:115
 msgid "Ivrita default"
 msgstr "ילדים/ות (ברירת מחדל)"
 
-#: admin-settings.php:111
+#: admin-settings.php:116
 msgid "Venus & Mars"
 msgstr "סמלי נֹגה ומאדים"
 
-#: admin-settings.php:112
+#: admin-settings.php:117
 msgid "Hebrew M.F.X"
 msgstr "אותיות ז/נ/א"
 
-#: admin-settings.php:113
+#: admin-settings.php:118
 msgid "M.F.X"
 msgstr "אותיות ‫M/F/X"
 
-#: admin-settings.php:114
+#: admin-settings.php:119
 msgid "Lips & mustache"
 msgstr "שפם ושפתיים"
 
-#: admin-settings.php:115
+#: admin-settings.php:120
 msgid "Stick figures"
 msgstr "דמויות גפרורים"
 
-#: admin-settings.php:122
+#: admin-settings.php:127
 msgid "Enable for roles"
 msgstr "עבריתה תפעל עבור התפקידים הבאים:"
 
-#: admin-settings.php:126
+#: admin-settings.php:131
 msgid "Everyone"
 msgstr "כל מבקרי/ות האתר"
 
-#: admin-settings.php:134
+#: admin-settings.php:139
 msgid "Local JS"
 msgstr "JS מקומי"
 
-#: admin-settings.php:138
+#: admin-settings.php:143
 msgid "Use local JavaScript file instead of secure, cached, fast CDN"
 msgstr "שימוש בקובץ JavaScript מקומי במקום ב־CDN מאובטח, מהיר ועדכני"
 
-#: admin-settings.php:139
+#: admin-settings.php:144
 msgid "Tip: Use this only if you know what you're doing!"
 msgstr "זהירות: אפשרות זו היא למתקדמות.ים!"
 
-#: admin-settings.php:146 admin-settings.php:160
+#: admin-settings.php:151 admin-settings.php:165
 msgid "Ivrita Settings"
 msgstr "הגדרות עבריתה"
 
-#: admin-settings.php:147
+#: admin-settings.php:152
 msgctxt "menu title"
 msgid "Ivrita"
 msgstr "עבריתה"
 
-#: admin-settings.php:173
+#: admin-settings.php:178
 msgid "Global Settings"
 msgstr "הגדרות כלליות"
 
-#: admin-settings.php:422
+#: admin-settings.php:436
 msgid "Ivrita Per-Post Settings"
 msgstr "עבריתה בעמוד זה"
 
-#: admin-settings.php:435
+#: admin-settings.php:452
 msgid "Disable Ivrita for this post"
 msgstr "כיבוי עבריתה בעמוד זה"
+
+#: admin-settings.php:455
+msgid "Alternative Post Titles"
+msgstr "כותרת דינאמית - עבור SEO"
+
+#: admin-settings.php:458
+msgid "Use a different title for male mode"
+msgstr "שימוש בכותרת אחרת במצב איש"
+
+#: admin-settings.php:463
+msgid "Use a different title for female mode"
+msgstr "שימוש בכותרת אחרת במצב אישה"
+
+#: admin-settings.php:468
+msgid "Use a different title for neutral mode"
+msgstr "שימוש בכותרת אחרת במצב ניטרלי"
 
 #: template-switch.php:22
 msgid "About the Ivrita project"

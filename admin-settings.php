@@ -422,6 +422,14 @@ class IvritaAdmin {
     return $matrix;
   }
 
+  public function get_post_field( $field_key, $post_id = null ) {
+    if ( $post_id === null ) {
+      global $post;
+      $post_id = $post->ID;
+    }
+    return get_post_meta( $post_id, '_ivrita_post_' . $field_key, true );
+  }
+
   public function enqueue_admin_scripts( $hook_suffix ) {
     if ( $hook_suffix != 'toplevel_page_ivrita' ) {
       return;
@@ -442,11 +450,31 @@ class IvritaAdmin {
 
   public function per_post_settings($post) {
     wp_nonce_field( 'ivrita_metabox_nonce', 'ivrita_metabox_nonce' ); // TODO: add the post id to the nonce
-    $value = get_post_meta( $post->ID, '_ivrita_post_disable', true );
+    $disable = $this->get_post_field( 'disable', $post->ID );
+    $post_title_male = $this->get_post_field( 'title_male', $post->ID );
+    $post_title_female = $this->get_post_field( 'title_female', $post->ID );
+    $post_title_neutral = $this->get_post_field( 'title_neutral', $post->ID );
     ?>
     <label for="ivrita-post-disable">
-      <input type="checkbox" name="ivrita-post-disable" id="ivrita-post-disable" class="postbox" <?php checked( $value ); ?> />
+      <input type="checkbox" name="ivrita-post-disable" id="ivrita-post-disable" class="postbox" <?php checked( $disable, 'on' ); ?> />
       <?php _e( 'Disable Ivrita for this post', 'ivrita' ); ?>
+    </label>
+
+    <h4><?php esc_html_e( 'Alternative Post Titles', 'ivrita' ); ?></h4>
+
+    <label for="ivrita-post-title_male">
+      <?php _e( 'Use a different title for male mode', 'ivrita' ); ?>
+      <input type="text" name="ivrita-post-title_male" id="ivrita-post-title_male" class="postbox" value="<?php echo esc_attr( $post_title_male ); ?>" />
+    </label>
+
+    <label for="ivrita-post-title_female">
+      <?php _e( 'Use a different title for female mode', 'ivrita' ); ?>
+      <input type="text" name="ivrita-post-title_female" id="ivrita-post-title_female" class="postbox" value="<?php echo esc_attr( $post_title_female ); ?>" />
+    </label>
+
+    <label for="ivrita-post-title_neutral">
+      <?php _e( 'Use a different title for neutral mode', 'ivrita' ); ?>
+      <input type="text" name="ivrita-post-title_neutral" id="ivrita-post-title_neutral" class="postbox" value="<?php echo esc_attr( $post_title_neutral ); ?>" />
     </label>
     <?php
   }
@@ -466,27 +494,35 @@ class IvritaAdmin {
       return $post_id;
     }
 
-    $new_meta_value = ( ( isset( $_POST['ivrita-post-disable'] ) && 'on' === $_POST['ivrita-post-disable'] ) ? true : '' );
+    $fields = array(
+      'disable',
+      'title_male',
+      'title_female',
+      'title_neutral',
+    );
 
-    /* Get the meta key. */
-    $meta_key = '_ivrita_post_disable';
+    foreach ( $fields as $field_key ) {
+      $new_meta_value = ( isset( $_POST[ 'ivrita-post-' . $field_key ] ) ? $_POST[ 'ivrita-post-' . $field_key ] : '' );
+      $meta_key = '_ivrita_post_' . $field_key;
 
-    /* Get the meta value of the custom field key. */
-    $meta_value = get_post_meta( $post_id, $meta_key, true );
-    
-    /* If a new meta value was added and there was no previous value, add it. */
-    if ( $new_meta_value && '' === $meta_value ) {
-      add_post_meta( $post_id, $meta_key, $new_meta_value, true );
+      /* Get the meta value of the custom field key. */
+      $meta_value = get_post_meta( $post_id, $meta_key, true );
+      
+      /* If a new meta value was added and there was no previous value, add it. */
+      if ( $new_meta_value && '' === $meta_value ) {
+        add_post_meta( $post_id, $meta_key, $new_meta_value, true );
+      }
+      
+      /* If the new meta value does not match the old value, update it. */
+      elseif ( $new_meta_value && $new_meta_value != $meta_value ) {
+        update_post_meta( $post_id, $meta_key, $new_meta_value );
+      }
+      
+      /* If there is no new meta value but an old value exists, delete it. */
+      elseif ( '' === $new_meta_value && $meta_value ) {
+        delete_post_meta( $post_id, $meta_key, $meta_value );
+      }
     }
-    
-    /* If the new meta value does not match the old value, update it. */
-    elseif ( $new_meta_value && $new_meta_value != $meta_value ) {
-      update_post_meta( $post_id, $meta_key, $new_meta_value );
-    }
-    
-    /* If there is no new meta value but an old value exists, delete it. */
-    elseif ( '' === $new_meta_value && $meta_value ) {
-      delete_post_meta( $post_id, $meta_key, $meta_value );
-    }
+
   }
 }

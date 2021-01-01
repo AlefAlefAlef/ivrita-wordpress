@@ -20,6 +20,25 @@
 
   window._ivrita = new Ivrita();
 
+  // Page title
+  if (typeof _ivrita_titles === 'object' && Ivrita.textObjects) {
+    var titleTextNode = document.documentElement.getElementsByTagName('title')[0].childNodes[0];
+    var titleIvritaNode = Ivrita.textObjects.get(titleTextNode);
+    var currentTitle = titleTextNode.data;
+    
+    if (titleIvritaNode) {
+      if (_ivrita_titles.male) {
+        titleIvritaNode.storedValues[Ivrita.MALE] = currentTitle.replace(_ivrita_titles.current, _ivrita_titles.male);
+      }
+      if (_ivrita_titles.female) {
+        titleIvritaNode.storedValues[Ivrita.FEMALE] = currentTitle.replace(_ivrita_titles.current, _ivrita_titles.female);
+      }
+      if (_ivrita_titles.neutral) {
+        titleIvritaNode.storedValues[Ivrita.NEUTRAL] = currentTitle.replace(_ivrita_titles.current, _ivrita_titles.neutral);
+      }
+    }
+  }
+
   function setMode(newMode) {
     document.querySelectorAll(buttonsSelector).forEach(function(btn) {
       if (btn.dataset.ivritaMode === newMode) {
