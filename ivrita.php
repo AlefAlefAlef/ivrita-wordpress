@@ -38,6 +38,7 @@ class IvritaWP {
     add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 
     $this->settings = new IvritaAdmin();
+    add_filter( 'the_content', array( $this, 'maybe_disable_post_content' ), 90 );
     add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
     add_action( 'wp_footer', array( $this, 'print_switch' ), 90 );
 
@@ -47,6 +48,17 @@ class IvritaWP {
 
   public function load_textdomain() {
     load_plugin_textdomain( 'ivrita', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+  }
+
+  public function maybe_disable_post_content( $content ) {
+    if ( 'on' === $this->settings->get_post_field( 'disable_content' ) ) {
+      return $this->wrap_disable( $content );
+    }
+    return $content;
+  }
+
+  public function wrap_disable( $text, $tag = 'div' ) {
+    return sprintf( '<%1$s data-ivrita-disable="true">%2$s</%1$s>', $tag, $text );
   }
 
   public function enqueue_scripts() {

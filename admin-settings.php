@@ -450,17 +450,30 @@ class IvritaAdmin {
 
   public function per_post_settings($post) {
     wp_nonce_field( 'ivrita_metabox_nonce', 'ivrita_metabox_nonce' ); // TODO: add the post id to the nonce
+    $disable_content = $this->get_post_field( 'disable_content', $post->ID );
     $disable = $this->get_post_field( 'disable', $post->ID );
+
     $post_title_male = $this->get_post_field( 'title_male', $post->ID );
     $post_title_female = $this->get_post_field( 'title_female', $post->ID );
     $post_title_neutral = $this->get_post_field( 'title_neutral', $post->ID );
     ?>
-    <label for="ivrita-post-disable">
-      <input type="checkbox" name="ivrita-post-disable" id="ivrita-post-disable" class="postbox" <?php checked( $disable, 'on' ); ?> />
-      <?php _e( 'Disable Ivrita for this post', 'ivrita' ); ?>
-    </label>
+
+    <h4><?php esc_html_e( 'Disable Ivrita on:', 'ivrita' ); ?></h4>
+    <p>
+      <label for="ivrita-post-disable_content">
+        <input type="checkbox" name="ivrita-post-disable_content" id="ivrita-post-disable_content" class="postbox" <?php checked( $disable_content, 'on' ); ?> />
+        <?php _e( 'The content', 'ivrita' ); ?>
+      </label>
+    </p>
+    <p>
+      <label for="ivrita-post-disable">
+        <input type="checkbox" name="ivrita-post-disable" id="ivrita-post-disable" class="postbox" <?php checked( $disable, 'on' ); ?> />
+        <?php _e( 'The entire page', 'ivrita' ); ?> <small><?php _e( '(not even the sidebar and menus)', 'ivrita' ); ?></small>
+      </label>
+    </p>
 
     <h4><?php esc_html_e( 'Alternative Post Titles', 'ivrita' ); ?></h4>
+    <p><?php esc_html_e( 'Allow search engines to see the original post title, but show a custom title to each user based on their gender.', 'ivrita' );?></p>
 
     <label for="ivrita-post-title_male">
       <?php _e( 'Use a different title for male mode', 'ivrita' ); ?>
@@ -495,6 +508,7 @@ class IvritaAdmin {
     }
 
     $fields = array(
+      'disable_content',
       'disable',
       'title_male',
       'title_female',

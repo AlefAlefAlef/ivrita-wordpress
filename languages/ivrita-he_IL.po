@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ivrita\n"
-"POT-Creation-Date: 2021-01-01 19:50+0200\n"
-"PO-Revision-Date: 2021-01-01 19:54+0200\n"
+"POT-Creation-Date: 2021-01-02 13:29+0200\n"
+"PO-Revision-Date: 2021-01-02 13:30+0200\n"
 "Last-Translator: Reuven Karasik <rubik@karasik.org>\n"
 "Language-Team: Reuven Karasik <rubik@karasik.org>\n"
 "Language: he\n"
@@ -17,8 +17,8 @@ msgstr ""
 "X-Poedit-WPHeader: ivrita.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
@@ -140,27 +140,55 @@ msgstr "עבריתה"
 msgid "Global Settings"
 msgstr "הגדרות כלליות"
 
-#: admin-settings.php:436
+#: admin-settings.php:444
 msgid "Ivrita Per-Post Settings"
 msgstr "עבריתה בעמוד זה"
 
-#: admin-settings.php:452
-msgid "Disable Ivrita for this post"
-msgstr "כיבוי עבריתה בעמוד זה"
+#: admin-settings.php:463
+msgid "Disable Ivrita on:"
+msgstr "כיבוי עבריתה ב:"
 
-#: admin-settings.php:455
+#: admin-settings.php:467
+msgid "The title"
+msgstr "כותרת"
+
+#: admin-settings.php:473
+msgid "The content"
+msgstr "תוכן"
+
+#: admin-settings.php:479
+msgid "The excerpt"
+msgstr "תקציר"
+
+#: admin-settings.php:485
+msgid "The entire page"
+msgstr "כל העמוד"
+
+#: admin-settings.php:485
+msgid "(not even the sidebar and menus)"
+msgstr "(אפילו בתפריטים ווידג'טים)"
+
+#: admin-settings.php:489
 msgid "Alternative Post Titles"
 msgstr "כותרת דינאמית - עבור SEO"
 
-#: admin-settings.php:458
+#: admin-settings.php:490
+msgid ""
+"Allow search engines to see the original post title, but show a custom title "
+"to each user based on their gender."
+msgstr ""
+"נאפשר למנועי חיפוש לאנדקס את כותרת הפוסט המקורית שבחרת, אך נציג כותרת מותאמת "
+"אישית לכל משתמש/ת לפי בחירתו/ה."
+
+#: admin-settings.php:493
 msgid "Use a different title for male mode"
 msgstr "שימוש בכותרת אחרת במצב איש"
 
-#: admin-settings.php:463
+#: admin-settings.php:498
 msgid "Use a different title for female mode"
 msgstr "שימוש בכותרת אחרת במצב אישה"
 
-#: admin-settings.php:468
+#: admin-settings.php:503
 msgid "Use a different title for neutral mode"
 msgstr "שימוש בכותרת אחרת במצב ניטרלי"
 
