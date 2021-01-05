@@ -39,9 +39,11 @@ class IvritaAdmin {
         ),
         'icon' => array(
           'type' => 'hidden',
+          'editable' => false,
         ),
         'order' => array(
           'type' => 'hidden',
+          'editable' => true,
         )
       ),
       'rows' => array(
@@ -227,7 +229,7 @@ class IvritaAdmin {
       }
       break;
     case 'matrix':
-      $this->print_matrix($arguments, $value);
+      $this->print_matrix($arguments, $this->get_matrix( $arguments[ 'id' ] ));
     }
     
     
@@ -321,10 +323,10 @@ class IvritaAdmin {
       </thead>
       <tbody>
         <?php
-        if ( in_array( 'order', array_keys( $field['columns'] ) ) ) {
+        if ( in_array( 'order', array_keys( $field['columns'] ) ) && $value ) {
           uksort($field['rows'], function ($row1, $row2) use ($value) {
-            if ($value['order'][$row1] == $value['order'][$row2]) return 0;
-            return $value['order'][$row1] < $value['order'][$row2] ? -1 : 1;
+            if ($value[$row1]['order'] == $value[$row2]['order']) return 0;
+            return $value[$row1]['order'] < $value[$row2]['order'] ? -1 : 1;
           });
         }
 
@@ -349,18 +351,20 @@ class IvritaAdmin {
                 switch ( $column['type'] ){
                 case 'text':
                 case 'number':
-                  $input_value = $value[$column_id][$row_id];
+                  $input_value = $value[$row_id][$column_id];
                   printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $name, $arguments['type'], $row['default'][$column_id], $input_value );
                   break;
                 case 'radio':
                   $name = sprintf( '%s[%s]', $field['uid'], $column_id );
-                  printf( '<input name="%1$s" id="%1$s" type="radio" value="%2$s" %3$s />', $name, $row_id, checked( $value[$column_id], $row_id, false ) );
+                  printf( '<input name="%1$s" id="%1$s" type="radio" value="%2$s" %3$s />', $name, $row_id, checked( $value[$row_id][$column_id], true, false ) );
                   break;
                 case 'checkbox':
-                  printf( '<input name="%1$s" id="%1$s" type="checkbox" %2$s />', $name, checked( $value[$column_id][$row_id], 'on', false ) );
+                  printf( '<input name="%1$s" id="%1$s" type="checkbox" %2$s />', $name, checked( $value[$row_id][$column_id], true, false ) );
                   break;
                 case 'hidden':
-                  printf( '<input name="%1$s" id="%1$s" type="hidden" value="%2$s" />', $name, $value[$column_id][$row_id] );
+                  if ( $column['editable'] ) {
+                    printf( '<input name="%1$s" id="%1$s" type="hidden" value="%2$s" />', $name, $value[$row_id][$column_id] );
+                  }
                 }
               
                 if ( $column['type'] !== 'hidden' ) { ?>
@@ -387,7 +391,7 @@ class IvritaAdmin {
   }
 
   public function get_matrix( $field_name ) {
-    $value = $this->get_field( $field_name );
+    $value = (array) $this->get_field( $field_name );
     $field = $this->fields[ $field_name ];
     
     $matrix = array();
@@ -403,9 +407,17 @@ class IvritaAdmin {
             $col_value = $row['default'][ $column_id ];
           }
         } else if ( in_array( $column['type'], array( 'radio' ) )) {
-          $col_value = $value[ $column_id ] === $row_id;
+          if ( $value[ $column_id ] ) {
+            $col_value = $value[ $column_id ] === $row_id;
+          } else {
+            $col_value = $column['default'] === $row_id;
+          }
         } else if ( in_array( $column['type'], array( 'checkbox' ) )) {
-          $col_value = $value[ $column_id ][ $row_id ] === 'on';
+          if ( $value[ $column_id ] ) {
+            $col_value = $value[ $column_id ][ $row_id ] === 'on';
+          } else {
+            $col_value = $row['default'][ $column_id ] === 'on';
+          }
         }
 
         $matrix[ $row_id ][ $column_id ] = $col_value;
