@@ -72,6 +72,10 @@ class IvritaWP {
     
     if ( $this->enabled_for_page() ) {
       wp_enqueue_script( 'ivrita-wp-js', plugin_dir_url( __FILE__ ) . 'js/main.js', array( 'ivrita-lib-js' ), $this->js_version, true );
+
+      if ( $default_mode = $this->settings->get_field('modes')['default_mode'] ) {
+        wp_localize_script( 'ivrita-wp-js', '_ivrita_default_mode', $default_mode );
+      }
       
       if ( is_singular() ) {
         $title_male = $this->settings->get_post_field( 'title_male' );

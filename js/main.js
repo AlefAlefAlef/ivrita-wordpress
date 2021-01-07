@@ -55,6 +55,8 @@
   var mode;
   if (mode = window.localStorage.getItem('ivrita-mode')) {
     setMode(mode);
+  } else if (typeof _ivrita_default_mode === 'string' && Ivrita.GENDERS.includes(mode = Ivrita[_ivrita_default_mode.toUpperCase()])) {
+    Ivrita.setDefaultMode(mode);
   }
 
   function modeChangerClicked(e) {
