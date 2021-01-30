@@ -1,7 +1,7 @@
 <?php
-$male_label = $modes['labels']['male'];
-$female_label = $modes['labels']['female'];
-$neutral_label = $modes['labels']['neutral'];
+$male_label = $modes['male']['name'];
+$female_label = $modes['female']['name'];
+$neutral_label = $modes['neutral']['name'];
 ?>
 <div class="ivrita-switch <?php
 if ( 'right' === $position ) {

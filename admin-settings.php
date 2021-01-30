@@ -401,22 +401,22 @@ class IvritaAdmin {
         $col_value = null;
 
         if ( in_array( $column['type'], array( 'text', 'hidden' ) ) ) {
-          if ( isset( $value[ $column_id ][ $row_id ] ) && $value[ $column_id ][ $row_id ] ) {
+          if ( !empty( $value[ $column_id ][ $row_id ] ) ) {
             $col_value = $value[ $column_id ][ $row_id ];
-          } else if ( isset( $row['default'] ) && $row['default'][ $column_id ] ) {
+          } else if ( isset( $row['default'] ) && !empty( $row['default'][ $column_id ] ) ) {
             $col_value = $row['default'][ $column_id ];
           }
         } else if ( in_array( $column['type'], array( 'radio' ) )) {
-          if ( $value[ $column_id ] ) {
-            $col_value = $value[ $column_id ] === $row_id;
+          if ( ! empty( $value[ $column_id ] ) ) {
+            $col_value = !empty($value[ $column_id ]) && $value[ $column_id ] === $row_id;
           } else {
-            $col_value = $column['default'] === $row_id;
+            $col_value = !empty($column['default']) && $column['default'] === $row_id;
           }
         } else if ( in_array( $column['type'], array( 'checkbox' ) )) {
-          if ( $value[ $column_id ] ) {
-            $col_value = $value[ $column_id ][ $row_id ] === 'on';
+          if ( ! empty( $value[ $column_id ] ) ) {
+            $col_value = !empty($value[ $column_id ][ $row_id ]) && $value[ $column_id ][ $row_id ] === 'on';
           } else {
-            $col_value = $row['default'][ $column_id ] === 'on';
+            $col_value = !empty($row['default'][ $column_id ]) && $row['default'][ $column_id ] === 'on';
           }
         }
 
