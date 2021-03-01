@@ -203,7 +203,7 @@ class IvritaAdmin {
       if( ! empty ( $arguments['options'] ) && is_array( $arguments['options'] ) ){
         $options_markup = '';
         foreach( $arguments['options'] as $key => $label ){
-            $options_markup .= sprintf( '<label><input name="%1$s[%2$s]" id="%1$s_%2$s" type="checkbox" %3$s />%4$s</label><br>', $arguments['uid'], $key, checked( $value[$key], 'on', false ), $label );
+            $options_markup .= sprintf( '<label><input name="%1$s[%2$s]" id="%1$s_%2$s" type="checkbox" %3$s />%4$s</label><br>', $arguments['uid'], $key, checked( isset( $value[$key] ) ? $value[$key] : false, 'on', false ), $label );
         }
         echo $options_markup;
       } else {
@@ -233,11 +233,13 @@ class IvritaAdmin {
     }
     
     
-    if ( $helper = $arguments['helper'] ){
+    if ( ! empty( $arguments['helper'] ) ) {
+      $helper = $arguments['helper'];
       printf( '<span class="helper">%s</span>', $helper );
     }
     
-    if ( $supplimental = $arguments['supplemental'] ){
+    if ( ! empty( $arguments['supplemental'] ) ) {
+      $supplimental = $arguments['supplemental'];
       printf( '<p class="description">%s</p>', $supplimental );
     }
   }
@@ -352,7 +354,7 @@ class IvritaAdmin {
                 case 'text':
                 case 'number':
                   $input_value = $value[$row_id][$column_id];
-                  printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $name, $arguments['type'], $row['default'][$column_id], $input_value );
+                  printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" />', $name, $column['type'], $row['default'][$column_id], $input_value );
                   break;
                 case 'radio':
                   $name = sprintf( '%s[%s]', $field['uid'], $column_id );
