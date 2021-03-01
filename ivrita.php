@@ -30,7 +30,10 @@ class IvritaWP {
 
   private $info_link = 'https://alefalefalef.co.il/ivrita';
   
-  private $javascript_uri = 'https://ivrita.alefalefalef.co.il/ivrita.min.js';
+  private $local_dist_path = 'dist/';
+  private $cdn_url = 'https://ivrita.alefalefalef.co.il/';
+  private $javascript_filename = 'ivrita.min.js';
+  private $javascript_ui_filename = 'ivrita.ui.min.js';
 
   public $settings;
   
@@ -40,7 +43,6 @@ class IvritaWP {
     $this->settings = new IvritaAdmin();
     add_filter( 'the_content', array( $this, 'maybe_disable_post_content' ), 90 );
     add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
-    add_action( 'wp_footer', array( $this, 'print_switch' ), 90 );
 
     // Shortcodes
     add_shortcode( 'ivrita-toolbar', array( $this, 'toolbar_html' ) );
@@ -62,20 +64,20 @@ class IvritaWP {
   }
 
   public function enqueue_scripts() {
-    wp_enqueue_style( 'ivrita-css', plugin_dir_url( __FILE__ ) . 'css/main.css', array(), $this->js_version );
+    wp_enqueue_style( 'ivrita-style', plugin_dir_url( __FILE__ ) . 'css/main.css', array(), $this->js_version );
     
     if ( $this->settings->get_field( 'use_local_js' ) ) {
-      wp_register_script( 'ivrita-lib-js', plugin_dir_url( __FILE__ ) . 'js/ivrita.min.js', array(), $this->js_version, true );
+      wp_register_script( 'ivrita-lib', plugin_dir_url( __FILE__ ) . $this->local_dist_path . $this->javascript_filename, array(), $this->js_version, true );
+      wp_register_script( 'ivrita-ui', plugin_dir_url( __FILE__ ) . $this->local_dist_path . $this->javascript_ui_filename, array( 'ivrita-lib' ), $this->js_version, true );
     } else {
-      wp_register_script( 'ivrita-lib-js', $this->javascript_uri, array(), $this->js_version, true );
+      wp_register_script( 'ivrita-lib', $this->cdn_url . $this->javascript_filename, array(), $this->js_version, true );
+      wp_register_script( 'ivrita-ui', $this->cdn_url . $this->javascript_ui_filename, array( 'ivrita-lib' ), $this->js_version, true );
     }
     
     if ( $this->enabled_for_page() ) {
-      wp_enqueue_script( 'ivrita-wp-js', plugin_dir_url( __FILE__ ) . 'js/main.js', array( 'ivrita-lib-js' ), $this->js_version, true );
+      wp_enqueue_script( 'ivrita-wp', plugin_dir_url( __FILE__ ) . 'js/main.js', array( 'ivrita-lib', 'ivrita-ui' ), $this->js_version, true );
 
-      if ( $default_mode = $this->settings->get_field('modes')['default_mode'] ) {
-        wp_localize_script( 'ivrita-wp-js', '_ivrita_default_mode', $default_mode );
-      }
+      $this->localize_switch_config();
       
       if ( is_singular() ) {
         $title_male = $this->settings->get_post_field( 'title_male' );
@@ -83,7 +85,7 @@ class IvritaWP {
         $title_neutral = $this->settings->get_post_field( 'title_neutral' );
 
         if ( $title_male || $title_female || $title_neutral ) {
-          wp_localize_script( 'ivrita-wp-js', '_ivrita_titles', array(
+          wp_localize_script( 'ivrita-wp', '_ivrita_titles', array(
             'male' => $title_male,
             'female' => $title_female,
             'neutral' => $title_neutral,
@@ -95,15 +97,16 @@ class IvritaWP {
 
   }
 
-  public function print_switch() {
-    if ( ! $this->enabled_for_page() ) {
-      return;
-    }
-
+  public function localize_switch_config() {
     $position = $this->settings->get_field( 'switch_position' );
     $modes = $this->settings->get_matrix( 'modes' );
     $menu_style = $this->settings->get_field( 'menu_style' );
-    include 'template-switch.php';
+
+    wp_localize_script( 'ivrita-wp', '_ivrita_switch_config', array(
+      'position' => $position,
+      'modes' => $modes,
+      'style' => $menu_style,
+    ) );
   }
 
   public function enabled_for_page( $id = null ) {
