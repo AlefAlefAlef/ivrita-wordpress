@@ -121,12 +121,15 @@ class IvritaWP {
     }
 
     // URL-based disable
-    $url_disable_pattern = $this->settings->get_field('url_disable_pattern');
-    if ( $url_disable_pattern ) {
+    $url_disable_patterns = $this->settings->get_field('url_disable_patterns');
+    if ( $url_disable_patterns ) {
       global $wp;
       $current_req_url = $_SERVER['REQUEST_URI'];
-      if ( preg_match( '`' . $url_disable_pattern . '`', $current_req_url) ) {
-        return false;
+      $patterns = explode( "\n", $url_disable_patterns );
+      foreach ( $patterns as $pattern ) {
+        if ( preg_match( '`' . str_replace( "\r", "", $pattern) . '`', $current_req_url ) ) {
+          return false;
+        }
       }
     }
 

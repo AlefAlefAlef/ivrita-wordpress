@@ -136,12 +136,12 @@ class IvritaAdmin {
         'supplemental' => __( 'Tip: Use this only if you know what you\'re doing!', 'ivrita' ),
         'default' => false
       ),
-      'url_disable_pattern' => array(
-        'label' => __( 'URL Disable Pattern', 'ivrita' ),
+      'url_disable_patterns' => array(
+        'label' => __( 'URL Disable Patterns', 'ivrita' ),
         'section' => 'global_settings',
-        'type' => 'text',
+        'type' => 'textarea',
         'placeholder' => __( '(no URLs disabled by default)', 'ivrita' ),
-        'helper' => __( 'Ivrita will be disabled on URLs that match the given RegEx pattern.', 'ivrita' ),
+        'helper' => __( 'Ivrita will be disabled on URLs that match the given RegEx patterns (separated by new lines).', 'ivrita' ),
         'supplemental' => __( 'e.g. ".*(\?|&)lang=en$" to disable Ivrita on pages with the GET parameter "lang=en"', 'ivrita' ),
         'default' => false,
         'style' => 'text-align: left; direction: ltr',
@@ -208,7 +208,7 @@ class IvritaAdmin {
       printf( '<input name="%1$s" id="%1$s" type="%2$s" placeholder="%3$s" value="%4$s" %5$s />', $arguments['uid'], $arguments['type'], $arguments['placeholder'], $value, $css );
       break;
     case 'textarea':
-      printf( '<textarea name="%1$s" id="%1$s" placeholder="%2$s" rows="5" cols="50">%3$s</textarea>', $arguments['uid'], $arguments['placeholder'], $value );
+      printf( '<textarea name="%1$s" id="%1$s" placeholder="%2$s" rows="5" cols="50" %4$s>%3$s</textarea><br>', $arguments['uid'], $arguments['placeholder'], $value, $css );
       break;
     case 'checkbox':
       if( ! empty ( $arguments['options'] ) && is_array( $arguments['options'] ) ){

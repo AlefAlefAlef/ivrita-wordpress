@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ivrita\n"
-"POT-Creation-Date: 2021-03-31 18:24+0300\n"
-"PO-Revision-Date: 2021-03-31 18:25+0300\n"
+"POT-Creation-Date: 2021-03-31 20:09+0300\n"
+"PO-Revision-Date: 2021-03-31 20:09+0300\n"
 "Last-Translator: Reuven Karasik <rubik@karasik.org>\n"
 "Language-Team: Reuven Karasik <rubik@karasik.org>\n"
 "Language: he\n"
@@ -116,7 +116,7 @@ msgid "Tip: Use this only if you know what you're doing!"
 msgstr "זהירות: אפשרות זו היא למתקדמות.ים!"
 
 #: admin-settings.php:140
-msgid "URL Disable Pattern"
+msgid "URL Disable Patterns"
 msgstr "כיבוי עבריתה בכתובות URL מסוימות"
 
 #: admin-settings.php:143
@@ -124,8 +124,12 @@ msgid "(no URLs disabled by default)"
 msgstr "(ללא סינון)"
 
 #: admin-settings.php:144
-msgid "Ivrita will be disabled on URLs that match the given RegEx pattern."
-msgstr "עבריתה לא תופיע בעמודים שה־URL שלהם יתאים לתבנית הRegEx הזו"
+msgid ""
+"Ivrita will be disabled on URLs that match the given RegEx patterns "
+"(separated by new lines)."
+msgstr ""
+"עבריתה לא תופיע בעמודים שה־URL שלהם יתאים לתבניות הRegEx האלו (מופרדות "
+"בשורות חדשות)"
 
 #: admin-settings.php:145
 msgid ""
