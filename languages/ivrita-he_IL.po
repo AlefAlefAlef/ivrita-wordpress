@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ivrita\n"
-"POT-Creation-Date: 2021-01-02 14:17+0200\n"
-"PO-Revision-Date: 2021-01-27 23:02+0200\n"
+"POT-Creation-Date: 2021-03-31 17:36+0300\n"
+"PO-Revision-Date: 2021-03-31 17:47+0300\n"
 "Last-Translator: Reuven Karasik <rubik@karasik.org>\n"
 "Language-Team: Reuven Karasik <rubik@karasik.org>\n"
 "Language: he\n"
@@ -39,140 +39,140 @@ msgstr "ברירת המחדל"
 msgid "Label"
 msgstr "תוית"
 
-#: admin-settings.php:49 admin-settings.php:51
+#: admin-settings.php:51 admin-settings.php:53
 msgid "Male"
 msgstr "איש"
 
-#: admin-settings.php:56 admin-settings.php:58
+#: admin-settings.php:58 admin-settings.php:60
 msgid "Female"
 msgstr "אישה"
 
-#: admin-settings.php:63 admin-settings.php:65
+#: admin-settings.php:65 admin-settings.php:67
 msgid "Neutral"
 msgstr "ניטרלי"
 
-#: admin-settings.php:87
-msgid "Global Enable"
-msgstr "הפעלה גלובלית"
-
-#: admin-settings.php:92
-msgid "Enable everywhere in the website"
-msgstr "הפעלה בכל רחבי האתר"
-
-#: admin-settings.php:93
-msgid "You can turn this off/on for each post individually."
-msgstr "ניתן לשנות הגדרה זו עבור כל פוסט/עמוד בנפרד."
-
-#: admin-settings.php:97
+#: admin-settings.php:89
 msgid "Switch Position"
 msgstr "מיקום הסרגל"
 
-#: admin-settings.php:101
+#: admin-settings.php:93
 msgid "Right"
 msgstr "ימין"
 
-#: admin-settings.php:102
+#: admin-settings.php:94
 msgid "Left"
 msgstr "שמאל"
 
-#: admin-settings.php:106
+#: admin-settings.php:98
 msgid "The location of the floating switch on the entire website"
 msgstr "המיקום של סרגל עבריתה ברחבי האתר."
 
-#: admin-settings.php:111
+#: admin-settings.php:103
 msgid "Menu style"
 msgstr "סגנון תפריט"
 
-#: admin-settings.php:115
+#: admin-settings.php:107
 msgid "Ivrita default"
 msgstr "ילדים/ות (ברירת מחדל)"
 
-#: admin-settings.php:116
+#: admin-settings.php:108
 msgid "Venus & Mars"
 msgstr "סמלי נֹגה ומאדים"
 
-#: admin-settings.php:117
+#: admin-settings.php:109
 msgid "Hebrew M.F.X"
 msgstr "אותיות ז/נ/א"
 
-#: admin-settings.php:118
+#: admin-settings.php:110
 msgid "M.F.X"
 msgstr "אותיות ‫M/F/X"
 
-#: admin-settings.php:119
+#: admin-settings.php:111
 msgid "Lips & mustache"
 msgstr "שפם ושפתיים"
 
-#: admin-settings.php:120
+#: admin-settings.php:112
 msgid "Stick figures"
 msgstr "דמויות גפרורים"
 
-#: admin-settings.php:127
+#: admin-settings.php:119
 msgid "Enable for roles"
 msgstr "עבריתה תפעל עבור התפקידים הבאים:"
 
-#: admin-settings.php:131
+#: admin-settings.php:123
 msgid "Everyone"
 msgstr "כל מבקרי/ות האתר"
 
-#: admin-settings.php:139
+#: admin-settings.php:131
 msgid "Local JS"
 msgstr "JS מקומי"
 
-#: admin-settings.php:143
+#: admin-settings.php:135
 msgid "Use local JavaScript file instead of secure, cached, fast CDN"
 msgstr "שימוש בקובץ JavaScript מקומי במקום ב־CDN מאובטח, מהיר ועדכני"
 
-#: admin-settings.php:144
+#: admin-settings.php:136
 msgid "Tip: Use this only if you know what you're doing!"
 msgstr "זהירות: אפשרות זו היא למתקדמות.ים!"
 
-#: admin-settings.php:151 admin-settings.php:165
+#: admin-settings.php:140
+msgid "URL Disable Pattern"
+msgstr "כיבוי עבריתה בכתובות URL מסוימות"
+
+#: admin-settings.php:143
+msgid "(no URLs disabled by default)"
+msgstr "(ללא סינון)"
+
+#: admin-settings.php:144
+msgid "Ivrita will be disabled on URLs that match the given RegEx pattern."
+msgstr "עבריתה לא תופיע בעמודים שה־URL שלהם יתאים לתבנית הRegEx הזו"
+
+#: admin-settings.php:145
+msgid ""
+"e.g. \".*(\\?|&)lang=en$\" to disable Ivrita on pages with the GET parameter "
+"\"lang=en\""
+msgstr ""
+"למשל: <code style=\"direction:ltr\">.*(\\?|&)lang=en$</code> כדי לכבות את "
+"עבריתה בעמודים שבהם יש פרמטר GET של \"lang=en\""
+
+#: admin-settings.php:152 admin-settings.php:166
 msgid "Ivrita Settings"
 msgstr "הגדרות עבריתה"
 
-#: admin-settings.php:152
+#: admin-settings.php:153
 msgctxt "menu title"
 msgid "Ivrita"
 msgstr "עבריתה"
 
-#: admin-settings.php:178
+#: admin-settings.php:179
 msgid "Global Settings"
 msgstr "הגדרות כלליות"
 
-#: admin-settings.php:444
+#: admin-settings.php:457
 msgid "Ivrita Per-Post Settings"
 msgstr "עבריתה בעמוד זה"
 
-#: admin-settings.php:463
+#: admin-settings.php:474
 msgid "Disable Ivrita on:"
 msgstr "כיבוי עבריתה ב:"
 
-#: admin-settings.php:467
-msgid "The title"
-msgstr "כותרת"
-
-#: admin-settings.php:473
+#: admin-settings.php:478
 msgid "The content"
 msgstr "תוכן"
 
-#: admin-settings.php:479
-msgid "The excerpt"
-msgstr "תקציר"
-
-#: admin-settings.php:485
+#: admin-settings.php:484
 msgid "The entire page"
 msgstr "כל העמוד"
 
-#: admin-settings.php:485
+#: admin-settings.php:484
 msgid "(not even the sidebar and menus)"
 msgstr "(אפילו בתפריטים ווידג'טים)"
 
-#: admin-settings.php:489
+#: admin-settings.php:488
 msgid "Alternative Post Titles"
 msgstr "כותרת דינאמית - עבור SEO"
 
-#: admin-settings.php:490
+#: admin-settings.php:489
 msgid ""
 "Allow search engines to see the original post title, but show a custom title "
 "to each user based on their gender."
@@ -180,21 +180,17 @@ msgstr ""
 "נאפשר למנועי חיפוש לאנדקס את כותרת הפוסט המקורית שבחרת, אך נציג כותרת מותאמת "
 "אישית לכל משתמש/ת לפי בחירתו/ה."
 
-#: admin-settings.php:493
+#: admin-settings.php:492
 msgid "Use a different title for male mode"
 msgstr "שימוש בכותרת אחרת במצב איש"
 
-#: admin-settings.php:498
+#: admin-settings.php:497
 msgid "Use a different title for female mode"
 msgstr "שימוש בכותרת אחרת במצב אישה"
 
-#: admin-settings.php:503
+#: admin-settings.php:502
 msgid "Use a different title for neutral mode"
 msgstr "שימוש בכותרת אחרת במצב ניטרלי"
-
-#: template-switch.php:22
-msgid "About the Ivrita project"
-msgstr "אודות מיזם עבריתה"
 
 #: template-toolbar.php:3
 msgid "Reference tongue:"
@@ -219,3 +215,21 @@ msgstr "אותו אתר, רק בשפה שלך"
 #. Author of the plugin/theme
 msgid "Reuven Karasik and Avraham Cornfeld"
 msgstr "ראובן קרסיק ואברהם קורנפלד"
+
+#~ msgid "Global Enable"
+#~ msgstr "הפעלה גלובלית"
+
+#~ msgid "Enable everywhere in the website"
+#~ msgstr "הפעלה בכל רחבי האתר"
+
+#~ msgid "You can turn this off/on for each post individually."
+#~ msgstr "ניתן לשנות הגדרה זו עבור כל פוסט/עמוד בנפרד."
+
+#~ msgid "The title"
+#~ msgstr "כותרת"
+
+#~ msgid "The excerpt"
+#~ msgstr "תקציר"
+
+#~ msgid "About the Ivrita project"
+#~ msgstr "אודות מיזם עבריתה"

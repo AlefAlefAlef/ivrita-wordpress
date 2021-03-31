@@ -115,6 +115,16 @@ class IvritaWP {
       $id = get_the_ID();
     }
 
+    // Per-URL disable
+    $url_disable_pattern = $this->settings->get_field('url_disable_pattern');
+    if ( $url_disable_pattern ) {
+      global $wp;
+      $current_req_url = $_SERVER['REQUEST_URI'];
+      if ( preg_match( '`' . $url_disable_pattern . '`', $current_req_url) ) {
+        return false;
+      }
+    }
+
     // Per-post disable
     if ($id && 'on' === $this->settings->get_post_field( 'disable', $id )) {
       return false;
