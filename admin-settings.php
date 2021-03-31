@@ -85,16 +85,6 @@ class IvritaAdmin {
 
 
     $this->fields = array(
-      'enable_global' => array(
-        'label' => __( 'Global Enable', 'ivrita' ),
-        'section' => 'global_settings',
-        'type' => 'checkbox',
-        'options' => false,
-        'placeholder' => false,
-        'helper' => __( 'Enable everywhere in the website', 'ivrita' ),
-        'supplemental' => __( 'You can turn this off/on for each post individually.', 'ivrita' ),
-        'default' => true
-      ),
       'switch_position' => array(
         'label' => __( 'Switch Position', 'ivrita' ),
         'section' => 'global_settings',

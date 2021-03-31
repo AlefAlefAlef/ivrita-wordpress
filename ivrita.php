@@ -115,10 +115,8 @@ class IvritaWP {
       $id = get_the_ID();
     }
 
-    // Globally enabled
-    if ( !$this->settings->get_field( 'enable_global' ) ) {
-      return false;
-    } else if ($id && 'on' === $this->settings->get_post_field( 'disable', $id )) {
+    // Per-post disable
+    if ($id && 'on' === $this->settings->get_post_field( 'disable', $id )) {
       return false;
     }
 
