@@ -146,6 +146,15 @@ class IvritaAdmin {
         'default' => false,
         'style' => 'text-align: left; direction: ltr',
       ),
+      'locale_disable' => array(
+        'label' => __( 'Disable on non-Hebrew locales', 'ivrita' ),
+        'section' => 'global_settings',
+        'type' => 'checkbox',
+        'placeholder' => false,
+        'helper' => __( 'Hide Ivrita on pages in other languages, based on the WordPress locale', 'ivrita' ),
+        'supplemental' => __( 'Works with plugins like WPML, Polylang, etc.', 'ivrita' ),
+        'default' => 'on',
+      ),
     );
   }
   

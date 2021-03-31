@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Ivrita\n"
-"POT-Creation-Date: 2021-03-31 17:36+0300\n"
-"PO-Revision-Date: 2021-03-31 17:47+0300\n"
+"POT-Creation-Date: 2021-03-31 18:24+0300\n"
+"PO-Revision-Date: 2021-03-31 18:25+0300\n"
 "Last-Translator: Reuven Karasik <rubik@karasik.org>\n"
 "Language-Team: Reuven Karasik <rubik@karasik.org>\n"
 "Language: he\n"
@@ -135,44 +135,56 @@ msgstr ""
 "למשל: <code style=\"direction:ltr\">.*(\\?|&)lang=en$</code> כדי לכבות את "
 "עבריתה בעמודים שבהם יש פרמטר GET של \"lang=en\""
 
-#: admin-settings.php:152 admin-settings.php:166
+#: admin-settings.php:150
+msgid "Disable on non-Hebrew locales"
+msgstr "כיבוי עבריתה בשפות אחרות"
+
+#: admin-settings.php:154
+msgid "Hide Ivrita on pages in other languages, based on the WordPress locale"
+msgstr "לא להציג את עבריתה בעמודים שאינם בעברית (בהסתמך על שפת הוורדפרס)"
+
+#: admin-settings.php:155
+msgid "Works with plugins like WPML, Polylang, etc."
+msgstr "עובד עם תוספים כמו WPML, Polylang וכו'."
+
+#: admin-settings.php:162 admin-settings.php:176
 msgid "Ivrita Settings"
 msgstr "הגדרות עבריתה"
 
-#: admin-settings.php:153
+#: admin-settings.php:163
 msgctxt "menu title"
 msgid "Ivrita"
 msgstr "עבריתה"
 
-#: admin-settings.php:179
+#: admin-settings.php:189
 msgid "Global Settings"
 msgstr "הגדרות כלליות"
 
-#: admin-settings.php:457
+#: admin-settings.php:469
 msgid "Ivrita Per-Post Settings"
 msgstr "עבריתה בעמוד זה"
 
-#: admin-settings.php:474
+#: admin-settings.php:486
 msgid "Disable Ivrita on:"
 msgstr "כיבוי עבריתה ב:"
 
-#: admin-settings.php:478
+#: admin-settings.php:490
 msgid "The content"
 msgstr "תוכן"
 
-#: admin-settings.php:484
+#: admin-settings.php:496
 msgid "The entire page"
 msgstr "כל העמוד"
 
-#: admin-settings.php:484
+#: admin-settings.php:496
 msgid "(not even the sidebar and menus)"
 msgstr "(אפילו בתפריטים ווידג'טים)"
 
-#: admin-settings.php:488
+#: admin-settings.php:500
 msgid "Alternative Post Titles"
 msgstr "כותרת דינאמית - עבור SEO"
 
-#: admin-settings.php:489
+#: admin-settings.php:501
 msgid ""
 "Allow search engines to see the original post title, but show a custom title "
 "to each user based on their gender."
@@ -180,15 +192,15 @@ msgstr ""
 "נאפשר למנועי חיפוש לאנדקס את כותרת הפוסט המקורית שבחרת, אך נציג כותרת מותאמת "
 "אישית לכל משתמש/ת לפי בחירתו/ה."
 
-#: admin-settings.php:492
+#: admin-settings.php:504
 msgid "Use a different title for male mode"
 msgstr "שימוש בכותרת אחרת במצב איש"
 
-#: admin-settings.php:497
+#: admin-settings.php:509
 msgid "Use a different title for female mode"
 msgstr "שימוש בכותרת אחרת במצב אישה"
 
-#: admin-settings.php:502
+#: admin-settings.php:514
 msgid "Use a different title for neutral mode"
 msgstr "שימוש בכותרת אחרת במצב ניטרלי"
 

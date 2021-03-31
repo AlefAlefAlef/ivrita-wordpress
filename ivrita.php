@@ -115,7 +115,12 @@ class IvritaWP {
       $id = get_the_ID();
     }
 
-    // Per-URL disable
+    // Language-based disable
+    if ( $this->settings->get_field( 'locale_disable' ) && get_locale() !== 'he_IL' ) {
+      return false;
+    }
+
+    // URL-based disable
     $url_disable_pattern = $this->settings->get_field('url_disable_pattern');
     if ( $url_disable_pattern ) {
       global $wp;
@@ -125,12 +130,12 @@ class IvritaWP {
       }
     }
 
-    // Per-post disable
+    // Post-based disable
     if ($id && 'on' === $this->settings->get_post_field( 'disable', $id )) {
       return false;
     }
 
-    // Roles
+    // Role-based disable
     $enable_roles = $this->settings->get_field( 'enable_roles' );
     if ( $enable_roles['everyone'] === 'on' ) {
       return true;
